@@ -7,7 +7,7 @@ import react from '@astrojs/react';
 export default defineConfig({
   // Mettez à jour avec votre domaine définitif avant le déploiement
   // Exemple : 'https://www.aurelia-it.com'
-  site: 'https://aurelia-it.com',
+  site: 'https://aurelia-automation-it-services.pages.dev',
   prefetch: true,
   trailingSlash: 'never',
   experimental: {

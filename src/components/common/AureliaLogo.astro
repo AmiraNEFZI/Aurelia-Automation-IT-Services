@@ -7,12 +7,12 @@ export interface Props {
 const { size, class: extra = '' } = Astro.props;
 
 const dims: Record<string, { w: number; h: number }> = {
-  navbar:  { w: 190, h: 56 },
-  sm:      { w: 190, h: 56 },
-  footer:  { w: 230, h: 68 },
-  md:      { w: 230, h: 68 },
-  page:    { w: 290, h: 86 },
-  lg:      { w: 290, h: 86 },
+  navbar:  { w: 220, h: 68 },   // modéré, lisible, professionnel
+  sm:      { w: 220, h: 68 },
+  footer:  { w: 240, h: 74 },
+  md:      { w: 240, h: 74 },
+  page:    { w: 300, h: 92 },
+  lg:      { w: 300, h: 92 },
 };
 
 const d = dims[size ?? 'footer'] ?? dims['footer'];
