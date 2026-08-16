@@ -1,0 +1,17 @@
+---
+import Button from '@ui/Button.astro';
+
+const title    = 'Ready to modernise your operations?<br/>Book a free <span class="text-teal-600">digital maturity assessment</span>.';
+const subTitle = "Find out how Aurelia's tailor-made automation and IT integration solutions can transform your industrial processes, reduce downtime and unlock sustainable competitiveness.";
+const cta      = { text: 'Book Free Assessment', href: '/contact' };
+---
+
+<section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20">
+  <div class="mx-auto mb-10 max-w-3xl text-center lg:mb-14">
+    <h2 class="text-4xl text-balance text-slate-800 sm:text-5xl">
+      <Fragment set:html={title} />
+    </h2>
+    <p class="mt-5 text-lg/8 text-pretty text-slate-600">{subTitle}</p>
+    <Button href={cta.href} variant="primary" className="mt-7 inline-flex border-none px-3.5!">{cta.text}</Button>
+  </div>
+</section>

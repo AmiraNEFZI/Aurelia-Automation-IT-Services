@@ -1,0 +1,24 @@
+---
+import Button from '@ui/Button.astro';
+
+const title = 'Transforming Your Operations into a Connected, Agile & Profit-Generating Ecosystem';
+const subTitle =
+  'Tailor-made automation and IT integration solutions aimed at optimising operational performance and ensuring sustainable competitiveness — across automotive, pharma, energy, agri-food and logistics.';
+const primaryCTA  = { text: 'Discover Our Services', href: '/services' };
+const secondaryCTA = { text: 'Free Digital Maturity Assessment', href: '/contact' };
+---
+
+<div class="mx-auto max-w-4xl text-left select-none sm:text-center">
+  <h1 class="block text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">
+    {title}
+  </h1>
+</div>
+
+<div class="mx-auto max-w-3xl text-left sm:text-center">
+  <p class="text-lg text-pretty text-slate-600">{subTitle}</p>
+</div>
+
+<div class="flex flex-col justify-center gap-5 sm:flex-row">
+  <Button href={primaryCTA.href}  variant="primary">{primaryCTA.text}</Button>
+  <Button href={secondaryCTA.href} variant="secondary">{secondaryCTA.text}</Button>
+</div>

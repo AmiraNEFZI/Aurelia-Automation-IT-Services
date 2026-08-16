@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide de Déploiement — Aurelia Automation &amp; IT Services</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #1e293b;
+      background: #f8fafc;
+    }
+    @media print {
+      body { background: white; font-size: 13px; }
+      .no-print { display: none !important; }
+      .page-break { page-break-before: always; }
+      section { page-break-inside: avoid; }
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+    /* ---- COVER ---- */
+    .cover {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 60%, #0f172a 100%);
+      color: white;
+      padding: 72px 48px;
+      border-radius: 16px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #99f6e4;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .cover h1 { font-size: 42px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .cover p { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 580px; }
+    .cover-meta {
+      margin-top: 36px;
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+    }
+    .cover-meta span strong { color: #99f6e4; display: block; font-size: 15px; }
+    /* ---- TOC ---- */
+    .toc {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+    .toc h2 { font-size: 18px; color: #0f766e; margin-bottom: 16px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { color: #0f766e; text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .sub { padding-left: 20px; margin-top: 4px; list-style: lower-alpha; }
+    .toc .sub li { margin-bottom: 3px; font-size: 13px; color: #475569; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-badge">Documentation Technique</div>
+    <h1>Guide de Déploiement<br/>Site Web Vitrine</h1>
+    <p>Aurelia Automation &amp; IT Services — Analyse comparative Vercel vs Cloudflare Pages et procédure complète de mise en production.</p>
+    <div class="cover-meta">
+      <span><strong>Projet</strong>Aurelia IT Services Website</span>
+      <span><strong>Framework</strong>Astro 7 (Static)</span>
+      <span><strong>Version</strong>1.0.0</span>
+      <span><strong>Date</strong>2026</span>
+    </div>
+  </div>
+
+  <!-- TABLE DES MATIÈRES -->
+  <div class="toc">
+    <h2>📋 Table des matières</h2>
+    <ol>
+      <li><a href="#prerequis">Prérequis avant déploiement</a></li>
+      <li><a href="#analyse">Analyse comparative : Vercel vs Cloudflare Pages</a>
+        <ul class="sub">
+          <li><a href="#vercel">Vercel — Points forts &amp; limites</a></li>
+          <li><a href="#cloudflare">Cloudflare Pages — Points forts &amp; limites</a></li>
+          <li><a href="#verdict">Verdict et recommandation pour Aurelia</a></li>
+        </ul>
+      </li>
+      <li><a href="#config-finale">Configuration finale du projet pour la production</a></li>
+      <li><a href="#guide-vercel">Guide déploiement Vercel — Étapes détaillées</a></li>
+      <li><a href="#guide-cloudflare">Guide déploiement Cloudflare Pages — Étapes détaillées</a></li>
+      <li><a href="#domaine">Connecter votre nom de domaine</a></li>
+      <li><a href="#formulaire">Activer le formulaire de contact (Formspree)</a></li>
+      <li><a href="#apres">Après le déploiement — Checklist finale</a></li>
+      <li><a href="#mise-a-jour">Mettre à jour le site après déploiement</a></li>
+      <li><a href="#troubleshooting">Résolution de problèmes courants</a></li>
+    </ol>
+  </div>
+
+
+  <style>
+    /* ---- SECTIONS ---- */
+    section { margin-bottom: 52px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .section-number {
+      background: #0f766e;
+      color: white;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .section-header h2 { font-size: 24px; color: #0f172a; }
+    /* ---- CARDS ---- */
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 12px; color: #0f172a; }
+    .card p { color: #475569; margin-bottom: 10px; }
+    /* ---- COMPARISON TABLE ---- */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .compare-table th {
+      background: #0f766e;
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .compare-table th:first-child { border-radius: 8px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 8px 0 0; }
+    .compare-table td { padding: 11px 16px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+    .compare-table tr:nth-child(even) td { background: #f8fafc; }
+    .compare-table tr:hover td { background: #f0fdf4; }
+    .compare-table .category { font-weight: 600; color: #334155; background: #f1f5f9 !important; }
+    /* ---- VERDICT BOX ---- */
+    .verdict-box {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px solid #059669;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin: 28px 0;
+    }
+    .verdict-box .winner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #059669;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .verdict-box h3 { font-size: 20px; color: #065f46; margin-bottom: 10px; }
+    .verdict-box p { color: #047857; }
+    .verdict-box ul { margin-top: 10px; padding-left: 20px; color: #047857; }
+    .verdict-box li { margin-bottom: 5px; }
+    /* ---- STEPS ---- */
+    .steps { counter-reset: step; }
+    .step {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 40px;
+      bottom: -16px;
+      width: 2px;
+      background: #e2e8f0;
+    }
+    .step-num {
+      counter-increment: step;
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      background: #0f766e;
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-content { flex: 1; padding-top: 6px; }
+    .step-content h4 { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    .step-content p { color: #475569; margin-bottom: 8px; }
+    /* ---- CODE ---- */
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 12px 0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .code-block .comment { color: #64748b; }
+    .code-block .key { color: #7dd3fc; }
+    .code-block .val { color: #86efac; }
+    .code-block .cmd { color: #fde68a; }
+    /* ---- BADGES ---- */
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-orange { background: #ffedd5; color: #9a3412; }
+    .badge-gray { background: #f1f5f9; color: #475569; }
+    /* ---- ALERTS ---- */
+    .alert {
+      border-left: 4px solid;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .alert-info { border-color: #0ea5e9; background: #f0f9ff; color: #0369a1; }
+    .alert-warning { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+    .alert-success { border-color: #10b981; background: #ecfdf5; color: #065f46; }
+    .alert-tip { border-color: #8b5cf6; background: #faf5ff; color: #5b21b6; }
+    .alert strong { display: block; margin-bottom: 4px; }
+    /* ---- CHECKLIST ---- */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 14px;
+      color: #334155;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist .check-icon {
+      width: 20px; height: 20px;
+      background: #dcfce7;
+      border: 2px solid #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    /* ---- GRID ---- */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+    /* ---- FEATURE LIST ---- */
+    .feature-list { list-style: none; padding: 0; }
+    .feature-list li { display: flex; gap: 8px; margin-bottom: 7px; font-size: 14px; color: #334155; }
+    .feature-list .icon-ok { color: #10b981; font-weight: 700; }
+    .feature-list .icon-warn { color: #f59e0b; font-weight: 700; }
+    .feature-list .icon-no { color: #ef4444; font-weight: 700; }
+    /* ---- FOOTER ---- */
+    .doc-footer {
+      border-top: 2px solid #e2e8f0;
+      padding-top: 24px;
+      margin-top: 60px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+    .platform-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .platform-logo {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: white;
+    }
+    .logo-vercel { background: #000; }
+    .logo-cf { background: linear-gradient(135deg, #f6821f, #faad3f); }
+    .platform-header h3 { font-size: 20px; font-weight: 700; color: #0f172a; }
+    .platform-header .score {
+      margin-left: auto;
+      font-size: 28px;
+      font-weight: 800;
+    }
+  </style>
+
+
+  <!-- SECTION 1 : PRÉREQUIS -->
+  <section id="prerequis">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2>Prérequis avant déploiement</h2>
+    </div>
+
+    <div class="card">
+      <h3>🧰 Outils requis sur votre machine</h3>
+      <div class="grid-2">
+        <div>
+          <ul class="feature-list">
+            <li><span class="icon-ok">✓</span> <strong>Node.js 20+</strong> — <a href="https://nodejs.org" style="color:#0f766e">nodejs.org</a></li>
+            <li><span class="icon-ok">✓</span> <strong>npm 9+</strong> (inclus avec Node.js)</li>
+            <li><span class="icon-ok">✓</span> <strong>Git</strong> — <a href="https://git-scm.com" style="color:#0f766e">git-scm.com</a></li>
+            <li><span class="icon-ok">✓</span> Un éditeur de code (VS Code recommandé)</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="feature-list">
+            <li><span class="icon-ok">✓</span> Un compte <strong>GitHub</strong> (gratuit) — pour héberger le code source</li>
+            <li><span class="icon-ok">✓</span> Un compte <strong>Vercel</strong> ou <strong>Cloudflare</strong> (gratuit)</li>
+            <li><span class="icon-ok">✓</span> Un nom de domaine (optionnel mais recommandé)</li>
+            <li><span class="icon-ok">✓</span> Un compte <strong>Formspree</strong> (gratuit) pour le formulaire</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>ℹ️ Build local vérifié</strong>
+      Le projet a été buildé avec succès : <code>0 erreurs TypeScript</code>, <strong>5 pages HTML générées</strong> dans le dossier <code>dist/</code>. Le projet est prêt pour le déploiement.
+    </div>
+
+    <div class="card">
+      <h3>📁 Structure du projet après build</h3>
+      <div class="code-block"><span class="comment"># Dossier dist/ généré par `npm run build`</span>
+dist/
+├── index.html          <span class="comment"># Page d'accueil</span>
+├── 404.html            <span class="comment"># Page d'erreur</span>
+├── robots.txt          <span class="comment"># SEO crawlers</span>
+├── about/
+│   └── index.html      <span class="comment"># Page À propos</span>
+├── contact/
+│   └── index.html      <span class="comment"># Page Contact</span>
+├── services/
+│   └── index.html      <span class="comment"># Page Services</span>
+└── _astro/             <span class="comment"># JS/CSS/images optimisés</span></div>
+    </div>
+
+    <div class="alert alert-warning">
+      <strong>⚠️ Avant de déployer — À personnaliser</strong>
+      Mettez à jour ces valeurs dans le projet : <br/>
+      • <code>astro.config.mjs</code> → changer <code>site: 'https://aurelia-it.com'</code> par votre vrai domaine<br/>
+      • <code>ContactForm.astro</code> et <code>FooterForm.astro</code> → remplacer <code>VOTRE_FORMSPREE_ID</code> par votre vrai ID Formspree<br/>
+      • <code>Footer.astro</code> → mettre à jour le numéro de téléphone et l'email réels
+    </div>
+  </section>
+
+
+  <!-- SECTION 2 : ANALYSE COMPARATIVE -->
+  <section id="analyse">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2>Analyse comparative : Vercel vs Cloudflare Pages</h2>
+    </div>
+
+    <p style="color:#475569;margin-bottom:24px;">
+      Les deux plateformes proposent un hébergement de sites statiques <strong>gratuit et performant</strong>. L'analyse ci-dessous est réalisée spécifiquement pour le cas d'Aurelia : un site vitrine Astro statique, sans backend, destiné à une clientèle professionnelle en Algérie et dans la région MENA.
+    </p>
+
+    <!-- Vercel -->
+    <div class="card" id="vercel">
+      <div class="platform-header">
+        <div class="platform-logo logo-vercel">▲</div>
+        <h3>Vercel</h3>
+        <div class="score" style="color:#0f766e;">8.5 / 10</div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <p style="font-weight:600;color:#166534;margin-bottom:8px;">✅ Points forts</p>
+          <ul class="feature-list">
+            <li><span class="icon-ok">✓</span> Intégration GitHub/GitLab <strong>en 2 clics</strong>, déploiement automatique à chaque push</li>
+            <li><span class="icon-ok">✓</span> Preview deployments : chaque Pull Request génère une URL de prévisualisation</li>
+            <li><span class="icon-ok">✓</span> Interface très intuitive, parfaite pour démarrer rapidement</li>
+            <li><span class="icon-ok">✓</span> CDN mondial performant (Edge Network dans 100+ régions)</li>
+            <li><span class="icon-ok">✓</span> HTTPS automatique + certificat SSL gratuit</li>
+            <li><span class="icon-ok">✓</span> Support natif d'Astro (framework officiellement supporté)</li>
+            <li><span class="icon-ok">✓</span> Analytics basiques inclus dans le plan gratuit</li>
+            <li><span class="icon-ok">✓</span> Domaine personnalisé gratuit sur le plan Hobby</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;color:#9a3412;margin-bottom:8px;">⚠️ Limites</p>
+          <ul class="feature-list">
+            <li><span class="icon-warn">△</span> Plan gratuit (Hobby) limité à <strong>usage non commercial</strong> selon les CGU — à vérifier pour un usage professionnel</li>
+            <li><span class="icon-warn">△</span> 100 GB de bande passante/mois sur le plan gratuit</li>
+            <li><span class="icon-warn">△</span> Le plan Pro coûte <strong>20 $/mois</strong> pour usage commercial</li>
+            <li><span class="icon-no">✗</span> CDN moins présent en Afrique du Nord que Cloudflare</li>
+            <li><span class="icon-no">✗</span> Pas de protection DDoS avancée sur le plan gratuit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cloudflare Pages -->
+    <div class="card" id="cloudflare">
+      <div class="platform-header">
+        <div class="platform-logo logo-cf">☁</div>
+        <h3>Cloudflare Pages</h3>
+        <div class="score" style="color:#f59e0b;">9.2 / 10</div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <p style="font-weight:600;color:#166534;margin-bottom:8px;">✅ Points forts</p>
+          <ul class="feature-list">
+            <li><span class="icon-ok">✓</span> Plan gratuit <strong>illimité en bande passante</strong> — aucune limite de trafic</li>
+            <li><span class="icon-ok">✓</span> Usage <strong>commercial autorisé</strong> sur le plan gratuit (contrairement à Vercel)</li>
+            <li><span class="icon-ok">✓</span> Réseau CDN Cloudflare : <strong>300+ PoP</strong> dont plusieurs en Afrique &amp; MENA (Johannesburg, Lagos, Le Caire, Marseille)</li>
+            <li><span class="icon-ok">✓</span> Protection DDoS intégrée et proxy Web Application Firewall (WAF)</li>
+            <li><span class="icon-ok">✓</span> HTTPS automatique + certificat SSL gratuit</li>
+            <li><span class="icon-ok">✓</span> Déploiement automatique depuis GitHub/GitLab</li>
+            <li><span class="icon-ok">✓</span> Web Analytics gratuit et sans cookies (RGPD friendly)</li>
+            <li><span class="icon-ok">✓</span> Domaine <code>.pages.dev</code> gratuit + domaine personnalisé</li>
+            <li><span class="icon-ok">✓</span> Temps de réponse excellent depuis l'Algérie et Afrique du Nord</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;color:#9a3412;margin-bottom:8px;">⚠️ Limites</p>
+          <ul class="feature-list">
+            <li><span class="icon-warn">△</span> Interface légèrement plus complexe que Vercel pour les débutants</li>
+            <li><span class="icon-warn">△</span> 500 builds/mois sur le plan gratuit (largement suffisant)</li>
+            <li><span class="icon-warn">△</span> Preview deployments disponibles mais configuration un peu plus manuelle</li>
+            <li><span class="icon-no">✗</span> Moins de documentation spécifique à Astro (bien que compatible)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tableau comparatif -->
+    <h3 style="font-size:18px;font-weight:700;margin:28px 0 14px;color:#0f172a;">Tableau comparatif détaillé</h3>
+    <div style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="width:30%">Critère</th>
+          <th style="width:35%">▲ Vercel</th>
+          <th style="width:35%">☁ Cloudflare Pages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="category" colspan="3">Performance &amp; Infrastructure</td></tr>
+        <tr>
+          <td>Réseau CDN</td>
+          <td>100+ PoP — performant globalement</td>
+          <td><strong>300+ PoP — meilleur en MENA/Afrique</strong></td>
+        </tr>
+        <tr>
+          <td>Latence depuis l'Algérie</td>
+          <td>~80-120 ms (via Europe)</td>
+          <td><strong>~30-60 ms (PoP proches)</strong></td>
+        </tr>
+        <tr>
+          <td>Protection DDoS</td>
+          <td>Basique sur plan gratuit</td>
+          <td><strong>Avancée, intégrée par défaut</strong></td>
+        </tr>
+        <tr><td class="category" colspan="3">Tarification &amp; Limites</td></tr>
+        <tr>
+          <td>Plan gratuit — Bande passante</td>
+          <td>100 GB/mois</td>
+          <td><strong>Illimitée</strong></td>
+        </tr>
+        <tr>
+          <td>Usage commercial (plan gratuit)</td>
+          <td><span class="badge badge-orange">Non autorisé (CGU)</span></td>
+          <td><span class="badge badge-green">✓ Autorisé</span></td>
+        </tr>
+        <tr>
+          <td>Builds par mois</td>
+          <td>Illimité</td>
+          <td>500/mois (gratuit)</td>
+        </tr>
+        <tr>
+          <td>Prix plan payant</td>
+          <td>20 $/mois (Pro)</td>
+          <td><strong>20 $/mois (Pro) — même prix, plus de valeur</strong></td>
+        </tr>
+        <tr><td class="category" colspan="3">Fonctionnalités</td></tr>
+        <tr>
+          <td>Déploiement auto (Git)</td>
+          <td><span class="badge badge-green">✓ Oui</span></td>
+          <td><span class="badge badge-green">✓ Oui</span></td>
+        </tr>
+        <tr>
+          <td>Preview par branche</td>
+          <td><span class="badge badge-green">✓ Excellent</span></td>
+          <td><span class="badge badge-blue">✓ Disponible</span></td>
+        </tr>
+        <tr>
+          <td>HTTPS automatique</td>
+          <td><span class="badge badge-green">✓ Oui</span></td>
+          <td><span class="badge badge-green">✓ Oui</span></td>
+        </tr>
+        <tr>
+          <td>Analytics web</td>
+          <td>Basique (plan gratuit)</td>
+          <td><strong>Complet, sans cookies (RGPD)</strong></td>
+        </tr>
+        <tr>
+          <td>Domaine personnalisé</td>
+          <td><span class="badge badge-green">✓ Gratuit</span></td>
+          <td><span class="badge badge-green">✓ Gratuit</span></td>
+        </tr>
+        <tr>
+          <td>Facilité de prise en main</td>
+          <td><strong>⭐⭐⭐⭐⭐ Très facile</strong></td>
+          <td>⭐⭐⭐⭐ Facile</td>
+        </tr>
+        <tr>
+          <td>Support Astro</td>
+          <td><strong>Officiel (framework supporté)</strong></td>
+          <td>Compatible (bien documenté)</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+    <!-- VERDICT -->
+    <div class="verdict-box" id="verdict">
+      <div class="winner-badge">🏆 Recommandation — Aurelia IT Services</div>
+      <h3>Cloudflare Pages est le meilleur choix pour votre cas</h3>
+      <p>Après analyse approfondie, <strong>Cloudflare Pages</strong> est la plateforme la plus adaptée au projet Aurelia pour ces raisons décisives :</p>
+      <ul>
+        <li><strong>Usage commercial autorisé gratuitement</strong> — votre site vitrine est un outil professionnel, Vercel l'interdit sur son plan gratuit.</li>
+        <li><strong>Bande passante illimitée</strong> — aucun risque de surcoût si votre site génère du trafic.</li>
+        <li><strong>Performance supérieure depuis l'Algérie et la région MENA</strong> — le réseau Cloudflare est très bien distribué en Afrique du Nord, garantissant une expérience rapide pour vos clients locaux.</li>
+        <li><strong>Sécurité renforcée</strong> — protection DDoS, WAF et proxy SSL inclus gratuitement, ce qui est essentiel pour une entreprise IT qui veut inspirer confiance.</li>
+        <li><strong>Analytics RGPD-friendly</strong> — sans cookies, parfait pour éviter les problèmes de conformité.</li>
+      </ul>
+      <p style="margin-top:12px;font-weight:600;">👉 Si vous débutez et souhaitez la démarche la plus simple possible, Vercel reste une excellente alternative — les étapes de déploiement sont identiques.</p>
+    </div>
+  </section>
+
+
+  <!-- SECTION 3 : CONFIG FINALE -->
+  <section id="config-finale" class="page-break">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2>Configuration finale du projet pour la production</h2>
+    </div>
+
+    <div class="alert alert-warning">
+      <strong>⚠️ Étapes obligatoires avant de pousser sur GitHub</strong>
+      Effectuez ces modifications dans les fichiers du projet, puis faites votre premier commit.
+    </div>
+
+    <div class="card">
+      <h3>Étape A — Mettre à jour l'URL du site dans astro.config.mjs</h3>
+      <p>Ouvrez le fichier <code>astro.config.mjs</code> à la racine du projet et remplacez la valeur <code>site</code> par votre domaine réel :</p>
+      <div class="code-block"><span class="comment">// astro.config.mjs</span>
+export default defineConfig({
+  <span class="key">site</span>: <span class="val">'https://VOTRE-DOMAINE.com'</span>,  <span class="comment">// ← Remplacez ici</span>
+  <span class="comment">// Exemple : 'https://aurelia-it.com'</span>
+  <span class="comment">// Si pas encore de domaine, utilisez votre URL Cloudflare :</span>
+  <span class="comment">// 'https://aurelia-it.pages.dev'</span>
+  ...
+});</div>
+    </div>
+
+    <div class="card">
+      <h3>Étape B — Configurer Formspree pour le formulaire de contact</h3>
+      <p>Dans <code>src/components/ui/forms/ContactForm.astro</code> et <code>FooterForm.astro</code>, remplacez <code>VOTRE_FORMSPREE_ID</code> par votre ID réel (voir Section 7 pour créer un compte Formspree).</p>
+      <div class="code-block"><span class="comment">&lt;!-- ContactForm.astro — ligne action= --&gt;</span>
+action=<span class="val">"https://formspree.io/f/VOTRE_FORMSPREE_ID"</span>
+
+<span class="comment">&lt;!-- Exemple avec un vrai ID : --&gt;</span>
+action=<span class="val">"https://formspree.io/f/xpznkwvr"</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Étape C — Initialiser Git et créer le dépôt GitHub</h3>
+      <p>Ouvrez un terminal dans le dossier du projet (<code>datanova-1.0.0</code>) et exécutez :</p>
+      <div class="code-block"><span class="comment"># 1. Initialiser git (si pas déjà fait)</span>
+<span class="cmd">git init</span>
+
+<span class="comment"># 2. Ajouter tous les fichiers (en excluant node_modules et dist)</span>
+<span class="cmd">git add .</span>
+
+<span class="comment"># 3. Premier commit</span>
+<span class="cmd">git commit -m "feat: site vitrine Aurelia Automation & IT Services"</span>
+
+<span class="comment"># 4. Renommer la branche principale (si nécessaire)</span>
+<span class="cmd">git branch -M main</span>
+
+<span class="comment"># 5. Connecter à GitHub (remplacez avec votre URL de repo)</span>
+<span class="cmd">git remote add origin https://github.com/VOTRE-COMPTE/aurelia-it-services.git</span>
+
+<span class="comment"># 6. Pousser le code</span>
+<span class="cmd">git push -u origin main</span></div>
+      <div class="alert alert-tip">
+        <strong>💡 Créer le repo GitHub</strong>
+        Allez sur <a href="https://github.com/new" style="color:#5b21b6">github.com/new</a>, donnez un nom au repo (ex: <code>aurelia-it-services</code>), choisissez <strong>Private</strong> pour protéger votre code source, et copiez l'URL fournie.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Étape D — Vérifier le fichier .gitignore</h3>
+      <p>Assurez-vous que le <code>.gitignore</code> exclut bien ces dossiers (le fichier d'origine est déjà correct) :</p>
+      <div class="code-block"><span class="comment"># .gitignore — vérifiez que ces lignes existent</span>
+node_modules/
+dist/
+.env
+.env.local
+.data/</div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 4 : GUIDE CLOUDFLARE PAGES -->
+  <section id="guide-cloudflare" class="page-break">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2>Guide déploiement — Cloudflare Pages <span class="badge badge-green" style="font-size:14px;margin-left:8px;">Recommandé</span></h2>
+    </div>
+
+    <div class="alert alert-success">
+      <strong>✅ Durée estimée : 10-15 minutes</strong>
+      Une fois le repo GitHub créé, le déploiement sur Cloudflare Pages prend moins de 15 minutes. Chaque push sur GitHub déclenche ensuite un redéploiement automatique.
+    </div>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Créer un compte Cloudflare</h4>
+          <p>Rendez-vous sur <strong><a href="https://dash.cloudflare.com/sign-up" style="color:#0f766e">dash.cloudflare.com/sign-up</a></strong> et créez un compte gratuit avec votre email professionnel. Aucune carte bancaire n'est requise pour le plan gratuit.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Accéder à Cloudflare Pages</h4>
+          <p>Une fois connecté au dashboard Cloudflare, dans le menu de gauche, cliquez sur <strong>"Workers &amp; Pages"</strong>, puis sur <strong>"Pages"</strong>, puis sur le bouton <strong>"Create a project"</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Connecter votre dépôt GitHub</h4>
+          <p>Choisissez <strong>"Connect to Git"</strong>. Cloudflare va vous demander l'autorisation d'accéder à GitHub. Cliquez sur <strong>"Authorize Cloudflare Pages"</strong>. Sélectionnez ensuite votre organisation/compte et choisissez le repo <code>aurelia-it-services</code> que vous avez créé.</p>
+          <div class="alert alert-tip">
+            <strong>💡 Accès limité</strong>
+            Vous pouvez donner accès uniquement au repo spécifique (option "Only select repositories") pour plus de sécurité.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Configurer les paramètres de build</h4>
+          <p>C'est l'étape la plus importante. Remplissez exactement comme ceci :</p>
+          <div class="code-block"><span class="comment">┌─────────────────────────────────────────────────┐</span>
+<span class="comment">│  PARAMÈTRES DE BUILD — Cloudflare Pages         │</span>
+<span class="comment">└─────────────────────────────────────────────────┘</span>
+
+<span class="key">Project name</span>          : <span class="val">aurelia-it-services</span>
+<span class="key">Production branch</span>     : <span class="val">main</span>
+<span class="key">Framework preset</span>      : <span class="val">Astro</span>  ← sélectionnez dans la liste
+<span class="key">Build command</span>         : <span class="val">npm run build</span>
+<span class="key">Build output directory</span>: <span class="val">dist</span>
+<span class="key">Root directory</span>        : <span class="val">datanova-1.0.0</span>  ← IMPORTANT : votre dossier projet
+<span class="key">Node.js version</span>       : <span class="val">20</span>  (dans Environment variables)</span></div>
+          <div class="alert alert-warning">
+            <strong>⚠️ Root directory critique</strong>
+            Si votre dépôt GitHub contient le dossier <code>datanova-1.0.0</code> à la racine (et non directement les fichiers du projet), vous devez définir <strong>Root directory = datanova-1.0.0</strong>. Si vous avez mis les fichiers directement à la racine du repo, laissez ce champ vide.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Ajouter la variable d'environnement Node.js</h4>
+          <p>Toujours dans la configuration de build, scrollez jusqu'à <strong>"Environment variables (advanced)"</strong> et ajoutez :</p>
+          <div class="code-block"><span class="key">Variable name</span>  : <span class="val">NODE_VERSION</span>
+<span class="key">Value</span>          : <span class="val">20</span></div>
+          <p style="margin-top:8px;">Cela force Cloudflare à utiliser Node.js 20, compatible avec Astro 7.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h4>Lancer le premier déploiement</h4>
+          <p>Cliquez sur <strong>"Save and Deploy"</strong>. Cloudflare va cloner votre repo, installer les dépendances et builder le site. Vous pouvez suivre les logs en temps réel. Le processus prend généralement <strong>1 à 3 minutes</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <h4>Vérifier le déploiement</h4>
+          <p>Une fois le build terminé, Cloudflare génère automatiquement une URL publique de type :</p>
+          <div class="code-block"><span class="val">https://aurelia-it-services.pages.dev</span></div>
+          <p>Cliquez sur ce lien pour vérifier que toutes les pages s'affichent correctement : accueil, services, à propos, contact.</p>
+          <div class="alert alert-success">
+            <strong>✅ C'est tout !</strong>
+            Désormais, chaque fois que vous poussez du code sur la branche <code>main</code> de GitHub, Cloudflare redéploie automatiquement votre site en 1-2 minutes.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 5 : GUIDE VERCEL -->
+  <section id="guide-vercel" class="page-break">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <h2>Guide déploiement — Vercel <span class="badge badge-gray" style="font-size:14px;margin-left:8px;">Alternative</span></h2>
+    </div>
+
+    <div class="alert alert-warning">
+      <strong>⚠️ Important — Licence Vercel</strong>
+      Le plan gratuit "Hobby" de Vercel est réservé à un <strong>usage personnel non commercial</strong>. Pour un site d'entreprise comme Aurelia, le plan <strong>Pro à 20 $/mois</strong> est techniquement requis selon les CGU. Cloudflare Pages n'a pas cette restriction.
+    </div>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Créer un compte Vercel</h4>
+          <p>Allez sur <strong><a href="https://vercel.com/signup" style="color:#0f766e">vercel.com/signup</a></strong>. Choisissez <strong>"Continue with GitHub"</strong> pour lier directement votre compte GitHub — c'est la méthode la plus rapide.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Importer le projet GitHub</h4>
+          <p>Sur le dashboard Vercel, cliquez sur <strong>"Add New… → Project"</strong>. Vercel liste vos repos GitHub. Sélectionnez <code>aurelia-it-services</code> et cliquez sur <strong>"Import"</strong>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Configurer le build</h4>
+          <p>Vercel détecte automatiquement Astro. Vérifiez ou ajustez ces paramètres :</p>
+          <div class="code-block"><span class="comment">┌─────────────────────────────────────────────────┐</span>
+<span class="comment">│  PARAMÈTRES DE BUILD — Vercel                   │</span>
+<span class="comment">└─────────────────────────────────────────────────┘</span>
+
+<span class="key">Framework Preset</span>      : <span class="val">Astro</span>  ← auto-détecté
+<span class="key">Root Directory</span>        : <span class="val">datanova-1.0.0</span>  ← si sous-dossier
+<span class="key">Build Command</span>         : <span class="val">npm run build</span>
+<span class="key">Output Directory</span>      : <span class="val">dist</span>
+<span class="key">Install Command</span>       : <span class="val">npm install --legacy-peer-deps</span></div>
+          <div class="alert alert-info">
+            <strong>ℹ️ Install command</strong>
+            Ajoutez <code>--legacy-peer-deps</code> à la commande d'installation car ce projet utilise des dépendances avec des peer deps croisées (React 19 + Svelte 5).
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Déployer</h4>
+          <p>Cliquez sur <strong>"Deploy"</strong>. Vercel build et déploie en 1-2 minutes. Votre URL sera de type :</p>
+          <div class="code-block"><span class="val">https://aurelia-it-services.vercel.app</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Vérifier et tester</h4>
+          <p>Parcourez toutes les pages du site depuis l'URL générée. Vérifiez les liens de navigation, les images, et que le formulaire de contact affiche correctement.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 6 : DOMAINE PERSONNALISÉ -->
+  <section id="domaine" class="page-break">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <h2>Connecter votre nom de domaine</h2>
+    </div>
+
+    <div class="card">
+      <h3>Sur Cloudflare Pages</h3>
+      <div class="steps" style="counter-reset:step;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Accéder aux paramètres du projet</h4>
+            <p>Dans Cloudflare Pages → votre projet → onglet <strong>"Custom domains"</strong> → cliquez <strong>"Set up a custom domain"</strong>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Entrer votre domaine</h4>
+            <p>Saisissez votre domaine (ex: <code>aurelia-it.com</code> ou <code>www.aurelia-it.com</code>) et cliquez <strong>"Continue"</strong>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Configurer les DNS chez votre registrar</h4>
+            <p>Cloudflare vous indique les enregistrements DNS à ajouter. Connectez-vous à votre registrar de domaine (ex: Namecheap, GoDaddy, OVH, etc.) et ajoutez :</p>
+            <div class="code-block"><span class="comment"># Si domaine racine (aurelia-it.com)</span>
+<span class="key">Type</span>  : <span class="val">CNAME</span>
+<span class="key">Name</span>  : <span class="val">@</span>  (ou votre domaine)
+<span class="key">Value</span> : <span class="val">aurelia-it-services.pages.dev</span>
+
+<span class="comment"># Si sous-domaine www (www.aurelia-it.com)</span>
+<span class="key">Type</span>  : <span class="val">CNAME</span>
+<span class="key">Name</span>  : <span class="val">www</span>
+<span class="key">Value</span> : <span class="val">aurelia-it-services.pages.dev</span></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Attendre la propagation DNS</h4>
+            <p>La propagation DNS peut prendre de <strong>quelques minutes à 48 heures</strong>. Cloudflare émettra automatiquement un certificat SSL une fois le domaine validé. Vous recevrez une confirmation par email.</p>
+            <div class="alert alert-tip">
+              <strong>💡 Astuce</strong>
+              Si votre domaine est déjà géré par Cloudflare (nameservers Cloudflare), la propagation est quasi instantanée — c'est un avantage supplémentaire de Cloudflare Pages.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Sur Vercel</h3>
+      <p>Dashboard Vercel → votre projet → <strong>Settings → Domains</strong> → entrez votre domaine → Vercel vous fournit les enregistrements DNS à configurer chez votre registrar (même procédure que ci-dessus, avec des valeurs différentes).</p>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>ℹ️ Mise à jour d'astro.config.mjs après ajout du domaine</strong>
+      Une fois votre domaine configuré, mettez à jour <code>astro.config.mjs</code> avec votre URL définitive, puis faites un <code>git push</code> pour redéployer :
+      <div class="code-block" style="margin-top:8px;"><span class="key">site</span>: <span class="val">'https://www.aurelia-it.com'</span>,</div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 7 : FORMULAIRE FORMSPREE -->
+  <section id="formulaire">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <h2>Activer le formulaire de contact (Formspree)</h2>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>ℹ️ Pourquoi Formspree ?</strong>
+      Le site est 100% statique — il n'y a pas de serveur backend. Formspree est un service qui reçoit les soumissions de formulaires et vous les envoie par email. Le plan gratuit inclut 50 soumissions/mois, largement suffisant pour un site vitrine.
+    </div>
+
+    <div class="steps" style="counter-reset:step;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Créer un compte Formspree</h4>
+          <p>Allez sur <strong><a href="https://formspree.io/register" style="color:#0f766e">formspree.io/register</a></strong> et créez un compte gratuit avec votre email <code>contact@aurelia-it.com</code>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Créer un nouveau formulaire</h4>
+          <p>Cliquez sur <strong>"+ New Form"</strong>, donnez-lui le nom <code>Contact Aurelia</code>, puis sélectionnez l'email de destination. Formspree génère un ID unique de type :</p>
+          <div class="code-block">https://formspree.io/f/<span class="val">xpznkwvr</span>  ← exemple d'ID</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Mettre à jour les deux fichiers de formulaire</h4>
+          <p>Remplacez <code>VOTRE_FORMSPREE_ID</code> par votre ID dans :</p>
+          <ul style="padding-left:20px;color:#475569;font-size:14px;margin:8px 0;">
+            <li><code>src/components/ui/forms/ContactForm.astro</code></li>
+            <li><code>src/components/ui/forms/FooterForm.astro</code></li>
+          </ul>
+          <div class="code-block"><span class="comment">&lt;!-- Exemple --&gt;</span>
+action=<span class="val">"https://formspree.io/f/xpznkwvr"</span>
+method=<span class="val">"POST"</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Pousser les changements et tester</h4>
+          <div class="code-block"><span class="cmd">git add src/components/ui/forms/ContactForm.astro</span>
+<span class="cmd">git add src/components/ui/forms/FooterForm.astro</span>
+<span class="cmd">git commit -m "fix: configure Formspree form IDs"</span>
+<span class="cmd">git push</span></div>
+          <p style="margin-top:8px;">Après redéploiement automatique, testez le formulaire depuis votre site en ligne. Vous devriez recevoir un email de test dans la boîte Formspree.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 8 : CHECKLIST POST-DÉPLOIEMENT -->
+  <section id="apres" class="page-break">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <h2>Après le déploiement — Checklist finale</h2>
+    </div>
+
+    <div class="card">
+      <h3>✅ Vérifications essentielles</h3>
+      <ul class="checklist">
+        <li><span class="check-icon"></span>Page d'accueil s'affiche correctement avec le hero, les sections et le footer</li>
+        <li><span class="check-icon"></span>Navigation fonctionne (Accueil / Services / À propos / Contact)</li>
+        <li><span class="check-icon"></span>Page Services affiche les 6 services avec leurs détails</li>
+        <li><span class="check-icon"></span>Page À propos affiche les statistiques et sections expertise</li>
+        <li><span class="check-icon"></span>Page Contact affiche le formulaire et les coordonnées</li>
+        <li><span class="check-icon"></span>Formulaire de contact : tester une soumission et vérifier la réception email</li>
+        <li><span class="check-icon"></span>Page 404 s'affiche sur une URL inexistante (ex: /test-404)</li>
+        <li><span class="check-icon"></span>Le site est responsive (tester sur mobile et tablette)</li>
+        <li><span class="check-icon"></span>HTTPS actif (🔒 dans la barre d'adresse du navigateur)</li>
+        <li><span class="check-icon"></span>Les images se chargent correctement (pas de broken images)</li>
+        <li><span class="check-icon"></span>Le bouton "Contactez-nous" dans la navbar redirige vers /contact</li>
+        <li><span class="check-icon"></span>Favicon et icône d'application visibles dans l'onglet du navigateur</li>
+        <li><span class="check-icon"></span>robots.txt accessible via https://votre-domaine.com/robots.txt</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🚀 Optimisations SEO post-lancement</h3>
+      <ul class="checklist">
+        <li><span class="check-icon"></span>Soumettre le sitemap sur <a href="https://search.google.com/search-console" style="color:#0f766e">Google Search Console</a> : <code>https://votre-domaine.com/sitemap-index.xml</code></li>
+        <li><span class="check-icon"></span>Créer une fiche <strong>Google Business Profile</strong> pour le référencement local</li>
+        <li><span class="check-icon"></span>Tester le score PageSpeed : <a href="https://pagespeed.web.dev" style="color:#0f766e">pagespeed.web.dev</a></li>
+        <li><span class="check-icon"></span>Vérifier les balises Open Graph (partage sur LinkedIn/WhatsApp) via <a href="https://www.opengraph.xyz" style="color:#0f766e">opengraph.xyz</a></li>
+        <li><span class="check-icon"></span>Configurer les analytics Cloudflare (gratuit, sans cookies) dans le dashboard</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 9 : MISES À JOUR -->
+  <section id="mise-a-jour">
+    <div class="section-header">
+      <div class="section-number">9</div>
+      <h2>Mettre à jour le site après déploiement</h2>
+    </div>
+
+    <div class="card">
+      <h3>Workflow de mise à jour (modèle Git)</h3>
+      <p>Le cycle de mise à jour est simple et entièrement automatisé :</p>
+      <div class="code-block"><span class="comment"># 1. Modifier vos fichiers dans src/</span>
+<span class="comment">#    ex: modifier le texte dans CTA.astro, ajouter une image, etc.</span>
+
+<span class="comment"># 2. Tester localement (optionnel mais recommandé)</span>
+<span class="cmd">npm run dev</span>   <span class="comment"># Lance le serveur local sur http://localhost:4321</span>
+
+<span class="comment"># 3. Builder pour vérifier qu'il n'y a pas d'erreurs</span>
+<span class="cmd">npm run build</span>
+
+<span class="comment"># 4. Commiter et pousser</span>
+<span class="cmd">git add .</span>
+<span class="cmd">git commit -m "update: modifier le texte de la section hero"</span>
+<span class="cmd">git push</span>
+
+<span class="comment"># ✅ Cloudflare/Vercel détecte le push et redéploie automatiquement</span>
+<span class="comment">#    Le site est mis à jour en ~1-2 minutes</span></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>📝 Modifications courantes</h3>
+        <ul class="feature-list" style="font-size:13px;">
+          <li><span class="icon-ok">→</span> Changer le texte : modifier directement le fichier <code>.astro</code> concerné</li>
+          <li><span class="icon-ok">→</span> Ajouter un service : éditer <code>src/pages/services.astro</code></li>
+          <li><span class="icon-ok">→</span> Changer les coordonnées : <code>Footer.astro</code> + <code>contact.astro</code></li>
+          <li><span class="icon-ok">→</span> Modifier les couleurs : <code>src/assets/styles/global.css</code></li>
+          <li><span class="icon-ok">→</span> Remplacer une image : dans <code>src/assets/images/</code></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>⚙️ Commandes utiles</h3>
+        <ul class="feature-list" style="font-size:13px;">
+          <li><span class="icon-ok">→</span> <code>npm run dev</code> — serveur de développement local</li>
+          <li><span class="icon-ok">→</span> <code>npm run build</code> — build de production</li>
+          <li><span class="icon-ok">→</span> <code>npm run preview</code> — prévisualiser le build</li>
+          <li><span class="icon-ok">→</span> <code>npm run format:fix</code> — formater le code</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 10 : TROUBLESHOOTING -->
+  <section id="troubleshooting" class="page-break">
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <h2>Résolution de problèmes courants</h2>
+    </div>
+
+    <div class="card">
+      <h3>🔴 Erreur de build : "Cannot find module" ou dépendance manquante</h3>
+      <p><strong>Cause :</strong> Cloudflare/Vercel utilise <code>npm install</code> sans <code>--legacy-peer-deps</code>.</p>
+      <p><strong>Solution :</strong> Dans les paramètres de build de la plateforme, remplacez la commande d'installation par :</p>
+      <div class="code-block"><span class="cmd">npm install --legacy-peer-deps</span></div>
+    </div>
+
+    <div class="card">
+      <h3>🔴 Erreur de build : "Root directory not found"</h3>
+      <p><strong>Cause :</strong> Votre repo GitHub contient un sous-dossier <code>datanova-1.0.0</code> mais le Root Directory n'est pas configuré.</p>
+      <p><strong>Solution :</strong> Dans les paramètres du projet sur Cloudflare/Vercel, définissez <strong>Root Directory = <code>datanova-1.0.0</code></strong>. Redéployez.</p>
+    </div>
+
+    <div class="card">
+      <h3>🟡 Les images ne s'affichent pas</h3>
+      <p><strong>Cause :</strong> Les images sont référencées avec des chemins incorrects.</p>
+      <p><strong>Solution :</strong> Vérifiez que les images existent dans <code>src/assets/images/</code>. Après un <code>npm run build</code>, vérifiez que le dossier <code>dist/_astro/</code> contient bien les fichiers image optimisés.</p>
+    </div>
+
+    <div class="card">
+      <h3>🟡 Le formulaire de contact ne fonctionne pas</h3>
+      <p><strong>Cause :</strong> L'ID Formspree n'a pas été remplacé ou n'est pas valide.</p>
+      <p><strong>Solution :</strong></p>
+      <ul style="padding-left:20px;color:#475569;font-size:14px;margin-top:6px;">
+        <li>Vérifiez que <code>VOTRE_FORMSPREE_ID</code> a bien été remplacé dans les deux fichiers de formulaire</li>
+        <li>Testez l'URL directement : <code>https://formspree.io/f/VOTRE_ID</code></li>
+        <li>Assurez-vous que le domaine de votre site est autorisé dans les paramètres Formspree</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🟡 Le domaine personnalisé ne fonctionne pas (erreur SSL ou 522)</h3>
+      <p><strong>Cause :</strong> La propagation DNS n'est pas terminée, ou les enregistrements sont incorrects.</p>
+      <p><strong>Solution :</strong></p>
+      <ul style="padding-left:20px;color:#475569;font-size:14px;margin-top:6px;">
+        <li>Attendez jusqu'à 48h pour la propagation DNS</li>
+        <li>Vérifiez la propagation sur <a href="https://www.whatsmydns.net" style="color:#0f766e">whatsmydns.net</a></li>
+        <li>Si le domaine est chez un registrar algérien, la propagation peut prendre plus de temps</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🟡 Erreur TypeScript lors du build : "astro:content not found"</h3>
+      <p><strong>Cause :</strong> Des références à l'ancien système de collections Keystatic peuvent subsister.</p>
+      <p><strong>Solution :</strong> Vérifiez qu'aucun fichier n'importe depuis <code>astro:content</code>. Le fichier <code>src/content.config.ts</code> a été supprimé — si l'erreur persiste, vérifiez les imports dans les pages.</p>
+    </div>
+
+    <div class="alert alert-success">
+      <strong>✅ Besoin d'aide supplémentaire ?</strong>
+      Documentation officielle d'Astro : <a href="https://docs.astro.build" style="color:#065f46">docs.astro.build</a> |
+      Cloudflare Pages : <a href="https://developers.cloudflare.com/pages" style="color:#065f46">developers.cloudflare.com/pages</a> |
+      Vercel : <a href="https://vercel.com/docs" style="color:#065f46">vercel.com/docs</a>
+    </div>
+  </section>
+
+  <!-- FOOTER DU DOCUMENT -->
+  <div class="doc-footer">
+    <p>
+      <strong style="color:#0f766e;">Aurelia Automation &amp; IT Services</strong> — Guide de Déploiement v1.0<br/>
+      Document généré pour le projet de site vitrine basé sur Astro 7 (Static) + Tailwind CSS 4 + Preline UI<br/>
+      <span style="margin-top:8px;display:block;">Ce document peut être imprimé en PDF depuis votre navigateur : Fichier → Imprimer → Enregistrer en PDF</span>
+    </p>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>

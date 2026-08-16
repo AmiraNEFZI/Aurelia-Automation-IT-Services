@@ -1,0 +1,103 @@
+@import 'tailwindcss';
+
+/* Preline UI */
+@source '../../../node_modules/preline/dist/*.js';
+@import '../../../node_modules/preline/variants.css';
+
+/* Plugins */
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-off-white: oklch(0.997 0 0);
+
+  /* Slate — neutral grays */
+  --color-slate-50:  oklch(0.984 0.003 247.858);
+  --color-slate-100: oklch(0.968 0.007 247.896);
+  --color-slate-200: oklch(0.929 0.013 255.508);
+  --color-slate-300: oklch(0.869 0.022 252.894);
+  --color-slate-400: oklch(0.704 0.04  256.788);
+  --color-slate-500: oklch(0.554 0.046 257.417);
+  --color-slate-600: oklch(0.446 0.043 257.281);
+  --color-slate-700: oklch(0.372 0.044 257.287);
+  --color-slate-800: oklch(0.279 0.041 260.031);
+  --color-slate-900: oklch(0.208 0.042 265.755);
+  --color-slate-950: oklch(0.129 0.042 264.695);
+
+  /* ── AURELIA BLUE — #1B3A7A  (engrenage + texte AURELIA dans le logo) ── */
+  --color-brand-50:  oklch(0.97  0.018 258);
+  --color-brand-100: oklch(0.92  0.040 258);
+  --color-brand-200: oklch(0.84  0.075 258);
+  --color-brand-300: oklch(0.73  0.110 258);
+  --color-brand-400: oklch(0.60  0.145 258);
+  --color-brand-500: oklch(0.49  0.163 258);   /* ≈ #1B3A7A */
+  --color-brand-600: oklch(0.41  0.155 258);
+  --color-brand-700: oklch(0.33  0.140 258);
+  --color-brand-800: oklch(0.26  0.120 258);
+  --color-brand-900: oklch(0.20  0.095 258);
+  --color-brand-950: oklch(0.14  0.070 258);
+
+  /* ── AURELIA GREEN — #2E8B57  (clé + "AUTOMATION & IT SERVICES" dans le logo) ── */
+  --color-teal-50:  oklch(0.97  0.022 155);
+  --color-teal-100: oklch(0.93  0.045 155);
+  --color-teal-200: oklch(0.87  0.075 155);
+  --color-teal-300: oklch(0.78  0.105 155);
+  --color-teal-400: oklch(0.68  0.130 155);
+  --color-teal-500: oklch(0.57  0.148 155);   /* ≈ #2E8B57 */
+  --color-teal-600: oklch(0.49  0.138 155);
+  --color-teal-700: oklch(0.42  0.122 155);
+  --color-teal-800: oklch(0.34  0.100 155);
+  --color-teal-900: oklch(0.27  0.078 155);
+  --color-teal-950: oklch(0.18  0.055 155);
+}
+
+@theme inline {
+  --animate-scroll: scroll var(--duration, 40s) var(--direction, forwards) linear infinite;
+
+  --font-dm-sans:   'DM Sans',   sans-serif;
+  --font-work-sans: 'Work Sans', sans-serif;
+
+  @keyframes scroll {
+    to { transform: translate(calc(-50% - 0.5rem)); }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-slate-200, currentColor);
+  }
+
+  body {
+    @apply font-work-sans;
+  }
+
+  h1, h2, h3, h4, .dm-sans {
+    @apply font-dm-sans;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility card {
+  @apply relative z-10 flex h-full flex-col border-dashed border-slate-300 p-4
+    before:absolute before:inset-0 before:-z-1 before:bg-linear-to-b/oklch
+    before:via-80% before:opacity-0
+    hover:before:from-transparent hover:before:via-transparent hover:before:to-teal-500/20
+    hover:before:opacity-100
+    focus:outline-hidden
+    focus:before:from-transparent focus:before:via-transparent focus:before:to-teal-500/20
+    focus:before:opacity-100
+    md:p-6;
+}

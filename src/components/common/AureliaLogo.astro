@@ -1,0 +1,30 @@
+---
+export interface Props {
+  size?: string;
+  class?: string;
+}
+
+const { size, class: extra = '' } = Astro.props;
+
+const dims: Record<string, { w: number; h: number }> = {
+  navbar:  { w: 190, h: 56 },
+  sm:      { w: 190, h: 56 },
+  footer:  { w: 230, h: 68 },
+  md:      { w: 230, h: 68 },
+  page:    { w: 290, h: 86 },
+  lg:      { w: 290, h: 86 },
+};
+
+const d = dims[size ?? 'footer'] ?? dims['footer'];
+---
+
+<img
+  src="/illustrations/aurelia_automation_it_services_logo.jpg"
+  alt="Aurelia Automation & IT Services"
+  width={d.w}
+  height={d.h}
+  class={`object-contain block ${extra}`}
+  style={`width:${d.w}px; height:${d.h}px; max-width:100%;`}
+  loading="eager"
+  decoding="async"
+/>

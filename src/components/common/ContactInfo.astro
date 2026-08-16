@@ -1,0 +1,30 @@
+---
+import Icon from '@ui/icons/Icon.astro';
+const { address, phone, email, website } = Astro.props;
+---
+
+<div>
+  <h3 class="font-semibold text-slate-700 text-sm uppercase tracking-widest mb-3">Contact</h3>
+  <ul class="mt-1 space-y-2 text-sm text-slate-600">
+    <li class="font-semibold text-brand-700">Aurelia Automation &amp; IT Services</li>
+    {address && <li class="text-slate-500">{address}</li>}
+    {phone && (
+      <li class="flex items-center gap-x-2">
+        <Icon name="mobile" class="size-4 shrink-0 text-teal-600" />
+        <a href={'tel:' + phone.replace(/\s/g, '')} class="hover:text-brand-700 transition-colors">{phone}</a>
+      </li>
+    )}
+    {email && (
+      <li class="flex items-center gap-x-2">
+        <Icon name="email" class="size-4 shrink-0 text-teal-600" />
+        <a href={'mailto:' + email} class="hover:text-brand-700 transition-colors">{email}</a>
+      </li>
+    )}
+    {website && (
+      <li class="flex items-center gap-x-2">
+        <Icon name="world" class="size-4 shrink-0 text-teal-600" />
+        <a href={'https://' + website} target="_blank" rel="noopener noreferrer" class="hover:text-brand-700 transition-colors">{website}</a>
+      </li>
+    )}
+  </ul>
+</div>

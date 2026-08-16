@@ -1,0 +1,44 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+export interface Props {
+  type?: 'button' | 'submit' | 'reset';
+  href?: string;
+  rel?: string;
+  target?: '_self' | '_blank' | '_parent' | '_top';
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  className?: string;
+  id?: string;
+}
+
+const { type, href, rel, target, variant, className, id } = Astro.props;
+
+/**
+ * Brand colours (from Aurelia logo):
+ *  primary   → dark blue  #1B3A7A  (gear + AURELIA text)
+ *  secondary → green      #2E8B57  (wrench + subtitle)
+ *  tertiary  → light blue tint (subtle call-to-action)
+ */
+const variants = {
+  primary:
+    'bg-brand-700 hover:bg-brand-600 focus:bg-brand-600 border border-transparent text-white',
+  secondary:
+    'border-2 border-brand-700 text-brand-800 hover:bg-brand-700 hover:text-white focus:bg-brand-700 focus:text-white',
+  tertiary:
+    'bg-brand-50 text-brand-800 hover:bg-brand-100 focus:bg-brand-100',
+};
+
+const baseClass = `rounded-lg px-6 py-2.5 text-center font-medium transition-colors duration-300 focus:outline-hidden ${variants[variant ?? 'primary']} ${className ?? ''}`;
+---
+
+{
+  href ? (
+    <a id={id} href={href} rel={rel} target={target} class={twMerge(baseClass)}>
+      <slot />
+    </a>
+  ) : (
+    <button id={id} type={type ?? 'button'} class={twMerge(baseClass)}>
+      <slot />
+    </button>
+  )
+}

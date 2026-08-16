@@ -1,0 +1,64 @@
+---
+import FooterForm from '@ui/forms/FooterForm.astro';
+import ContactInfo from '@common/ContactInfo.astro';
+import AureliaLogo from '@common/AureliaLogo.astro';
+
+const description = 'Tailor-made automation and IT integration solutions. Leaders in Industry 4.0 — transforming your operations into a connected, agile and profit-generating ecosystem.';
+
+const contactDetails = {
+  address: 'Algeria',
+  phone: '+213 (0) XX XX XX XX',
+  email: 'contact@aurelia-it.com',
+  website: 'www.aurelia-it.com',
+};
+
+const copyrightYear = new Date().getFullYear();
+---
+
+<footer class="mt-auto w-full bg-linear-to-t/oklch from-brand-50 via-transparent to-white pb-10">
+  <div class="mx-auto mt-auto w-full max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8">
+    <hr class="mb-10 border-slate-200" />
+
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-5">
+      <!-- Brand -->
+      <div class="col-span-full self-center xl:col-span-2">
+        <a href="/" aria-label="Aurelia Automation & IT Services — Home" class="flex-none focus:outline-hidden">
+          <AureliaLogo size="md" />
+        </a>
+        <p class="mt-5 text-pretty text-slate-600 lg:w-5/12 xl:w-10/12 text-sm">{description}</p>
+      </div>
+
+      <!-- Nav -->
+      <div class="col-span-1 xl:col-span-1 xl:col-start-3">
+        <h3 class="font-semibold text-slate-700 mb-3 text-sm uppercase tracking-widest">Navigation</h3>
+        <ul class="space-y-2 text-sm text-slate-500">
+          <li><a href="/"        class="hover:text-brand-700 transition-colors">Home</a></li>
+          <li><a href="/services" class="hover:text-brand-700 transition-colors">Services</a></li>
+          <li><a href="/about"    class="hover:text-brand-700 transition-colors">About Us</a></li>
+          <li><a href="/contact"  class="hover:text-brand-700 transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-span-1 xl:col-span-1">
+        <ContactInfo {...contactDetails} />
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-span-2 md:col-span-3 xl:col-span-2">
+        <h3 class="font-semibold text-slate-700 text-sm uppercase tracking-widest">Stay informed</h3>
+        <p class="mt-1 text-sm text-slate-500">Industry 4.0 insights and company news — no spam.</p>
+        <FooterForm />
+      </div>
+    </div>
+
+    <hr class="mt-10 mb-5 border-slate-200" />
+
+    <div class="grid gap-y-2 sm:flex sm:items-center sm:justify-between sm:gap-y-0">
+      <p class="text-sm text-slate-400">
+        &copy; 2020–{copyrightYear} Aurelia Automation &amp; IT Services. All rights reserved.
+      </p>
+      <p class="text-sm text-slate-400">Industrial Automation · IoT/AI · Power BI</p>
+    </div>
+  </div>
+</footer>

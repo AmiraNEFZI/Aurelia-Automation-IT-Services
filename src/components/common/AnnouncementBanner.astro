@@ -1,0 +1,23 @@
+---
+import Icon from '@ui/icons/Icon.astro';
+const text     = 'Industry 4.0 Leaders';
+const linkText = 'Book a free digital maturity assessment';
+const linkHref = '/contact';
+---
+<div class="flex justify-center">
+  <div class="rounded-xl bg-slate-50 shadow-md">
+    <a
+      href={linkHref}
+      class="group flex h-9 w-fit items-center justify-center gap-0 rounded-xl transition duration-300"
+      aria-label={`${text} — ${linkText}`}
+    >
+      <div class="flex h-full w-fit items-center gap-2 rounded-xl bg-brand-700 px-3">
+        <span class="text-sm font-semibold text-white">{text}</span>
+      </div>
+      <div class="hidden h-full w-fit items-center justify-center gap-2 px-3 sm:flex">
+        <span class="text-sm text-slate-600 transition duration-300 group-hover:underline">{linkText}</span>
+        <Icon name="chevronRight" />
+      </div>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+export const prerender = true;
+import BaseLayout from '@layout/BaseLayout.astro';
+import Hero from '@sections/HeroSection.astro';
+import FeatureShowcase from '@sections/FeatureShowcase.astro';
+import FeatureAnimated from '@sections/FeatureAnimated.astro';
+import FeatureGrid from '@sections/FeatureGrid.astro';
+import CTA from '@sections/CTA.astro';
+
+const seo = {
+  title: 'Aurelia Automation & IT Services — Industry 4.0 Specialists',
+  description:
+    'Tailor-made industrial automation, IoT/AI integration and Power BI consulting. Serving automotive, pharma, energy, agri-food and logistics sectors.',
+};
+---
+
+<BaseLayout seo={seo}>
+  <Hero />
+  <FeatureShowcase />
+  <FeatureAnimated />
+  <FeatureGrid />
+  <CTA />
+</BaseLayout>

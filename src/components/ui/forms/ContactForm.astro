@@ -1,0 +1,104 @@
+---
+const f = {
+  name:    'Full name',
+  company: 'Company',
+  email:   'Professional email',
+  phone:   'Phone number',
+  sector:  'Industry sector',
+  message: 'Describe your project or automation challenge…',
+  submit:  'Send message',
+};
+
+const sectors = [
+  'Automotive',
+  'Pharmaceuticals',
+  'Energy',
+  'Agri-food',
+  'Logistics',
+  'Other',
+];
+
+const inputClass = `peer block w-full rounded-lg border border-transparent bg-white/90 p-4 text-sm
+  not-placeholder-shown:pt-6 not-placeholder-shown:pb-2
+  placeholder:text-transparent
+  autofill:pt-6 autofill:pb-2
+  focus:border-brand-600/80 focus:pt-6 focus:pb-2
+  focus:ring-2 focus:ring-brand-600/60 focus:outline-hidden`;
+
+const labelClass = `pointer-events-none absolute start-0 top-0 h-full truncate border border-transparent
+  p-4 text-slate-500 transition duration-100 ease-in-out
+  peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-500
+  peer-focus:-translate-y-1.5 peer-focus:text-xs peer-focus:text-slate-500`;
+---
+
+<!--
+  To enable form submission, replace the action attribute:
+  Option A — Formspree:  action="https://formspree.io/f/YOUR_FORM_ID"
+  Option B — Web3Forms:  action="https://api.web3forms.com/submit" (add hidden access_key input)
+-->
+<form
+  action="https://formspree.io/f/VOTRE_FORMSPREE_ID"
+  method="POST"
+  class="p-5 space-y-4"
+  aria-labelledby="contact-form-title"
+>
+  <fieldset class="space-y-4">
+    <legend id="contact-form-title" class="sr-only">Contact Aurelia Automation &amp; IT Services</legend>
+
+    <!-- Full name -->
+    <div class="relative">
+      <input type="text" id="input-name" name="name" class={inputClass}
+        placeholder={f.name} required aria-required="true" aria-labelledby="lbl-name" />
+      <label id="lbl-name" for="input-name" class={labelClass}>{f.name}</label>
+    </div>
+
+    <!-- Company -->
+    <div class="relative">
+      <input type="text" id="input-company" name="company" class={inputClass}
+        placeholder={f.company} aria-labelledby="lbl-company" />
+      <label id="lbl-company" for="input-company" class={labelClass}>{f.company}</label>
+    </div>
+
+    <!-- Email -->
+    <div class="relative">
+      <input type="email" id="input-email" name="email" class={inputClass}
+        placeholder={f.email} required aria-required="true" aria-invalid="false" aria-labelledby="lbl-email" />
+      <label id="lbl-email" for="input-email" class={labelClass}>{f.email}</label>
+    </div>
+
+    <!-- Phone -->
+    <div class="relative">
+      <input type="tel" id="input-phone" name="phone" class={inputClass}
+        placeholder={f.phone} aria-labelledby="lbl-phone" />
+      <label id="lbl-phone" for="input-phone" class={labelClass}>{f.phone}</label>
+    </div>
+
+    <!-- Sector select -->
+    <div>
+      <label for="input-sector" class="block mb-1 text-xs font-medium text-white/80 px-1">{f.sector}</label>
+      <select id="input-sector" name="sector"
+        class="block w-full rounded-lg border border-transparent bg-white/90 px-4 py-3 text-sm text-slate-700 focus:border-brand-600/80 focus:ring-2 focus:ring-brand-600/60 focus:outline-hidden">
+        <option value="">— Select your sector —</option>
+        {sectors.map(s => <option value={s}>{s}</option>)}
+      </select>
+    </div>
+
+    <!-- Message -->
+    <div class="relative">
+      <textarea id="input-message" name="message" rows="4"
+        class={`${inputClass} resize-none`}
+        placeholder={f.message} required aria-required="true" aria-labelledby="lbl-message"></textarea>
+      <label id="lbl-message" for="input-message" class={labelClass}>{f.message}</label>
+    </div>
+  </fieldset>
+
+  <div class="pt-2">
+    <button
+      type="submit"
+      class="inline-flex w-full items-center justify-center rounded-lg bg-teal-600 px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-teal-500 focus:bg-teal-500 focus:outline-hidden sm:w-auto"
+      aria-label={f.submit}
+    >
+      {f.submit}
+    </button>
+  </div>
+</form>

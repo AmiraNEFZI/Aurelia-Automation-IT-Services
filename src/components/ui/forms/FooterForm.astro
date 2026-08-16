@@ -1,0 +1,42 @@
+---
+const strings = {
+  legend:      'Subscribe to Industry 4.0 insights',
+  placeholder: 'Your email address',
+  submit:      'Subscribe',
+  description: 'Industry 4.0 insights and company news — no spam, unsubscribe anytime.',
+};
+---
+
+<form action="https://formspree.io/f/VOTRE_FORMSPREE_ID" method="POST">
+  <fieldset
+    class="mt-4 flex flex-col items-center gap-2 rounded-lg bg-brand-600 p-2 sm:flex-row sm:gap-3"
+    aria-labelledby="footer-form-legend"
+  >
+    <legend id="footer-form-legend" class="sr-only">{strings.legend}</legend>
+
+    <div class="w-full">
+      <label for="footer-email-input" class="sr-only">{strings.placeholder}</label>
+      <input
+        type="email"
+        id="footer-email-input"
+        name="email"
+        class="block w-full rounded-lg border-transparent bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-400 focus:ring-brand-400 focus:outline-hidden"
+        placeholder={strings.placeholder}
+        required
+        aria-label={strings.placeholder}
+        aria-describedby="footer-form-desc"
+        autocomplete="email"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-teal-600 p-3 text-sm font-semibold whitespace-nowrap text-white transition duration-300 hover:bg-teal-500 focus:bg-teal-500 focus:outline-hidden sm:w-auto"
+      aria-label={strings.submit}
+    >
+      {strings.submit}
+    </button>
+  </fieldset>
+
+  <p id="footer-form-desc" class="mt-3 text-sm text-slate-400">{strings.description}</p>
+</form>
