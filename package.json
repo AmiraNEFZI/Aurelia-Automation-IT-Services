@@ -2,6 +2,9 @@
   "name": "aurelia-automation-it-services",
   "type": "module",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
