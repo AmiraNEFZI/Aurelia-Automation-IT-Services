@@ -5,9 +5,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  // Mettez à jour avec votre domaine définitif avant le déploiement
-  // Exemple : 'https://www.aurelia-it.com'
-  site: 'https://aurelia-automation-it-services.pages.dev',
+  site: 'https://www.aurelia-itautomation.com',
   prefetch: true,
   trailingSlash: 'never',
   experimental: {
