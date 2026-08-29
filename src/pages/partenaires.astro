@@ -1,0 +1,199 @@
+---
+export const prerender = true;
+import BaseLayout from '@layout/BaseLayout.astro';
+import type { WithContext, Thing } from 'schema-dts';
+
+const seo = {
+  title: 'Partenariats & Références — Aurelia Automation & IT Services',
+  description: 'Représentant exclusif ERP LogieMAX en Afrique du Nord. Partenariats stratégiques et références clients.',
+};
+const schema: WithContext<Thing> = {
+  '@context': 'https://schema.org', '@type': 'WebPage',
+  inLanguage: 'fr', '@id': Astro.url.href, url: Astro.url.href,
+  name: seo.title,
+  isPartOf: { '@type': 'WebSite', url: `${Astro.site}`, name: 'Aurelia Automation & IT Services' },
+};
+
+const partners = [
+  { name: 'CMC — Your Global Partner',    logo: '/illustrations/partners/cmc.jpg' },
+  { name: 'Aurelia Smart Food',           logo: '/illustrations/partners/aurelia-smart-food.jpg' },
+  { name: 'ADT',                          logo: '/illustrations/partners/adt.jpg' },
+  { name: 'STEG International Services', logo: '/illustrations/partners/steg.jpg' },
+  { name: 'WAVSON',                       logo: '/illustrations/partners/wavson.jpg' },
+  { name: 'RCI3D',                        logo: '/illustrations/partners/rci3d.jpg' },
+  { name: 'Esprit — Honoris',             logo: '/illustrations/partners/esprit.jpg' },
+  { name: 'Alpha Technology',             logo: '/illustrations/partners/alpha-technology.jpg' },
+  { name: 'SOTACID Zaghouan',             logo: '/illustrations/partners/sotacid.jpg' },
+  { name: 'REACTIV',                      logo: '/illustrations/partners/reactiv.jpg' },
+  { name: 'DEAP',                         logo: '/illustrations/partners/deap.jpg' },
+];
+
+const technologies = [
+  {
+    title: 'Technologies & environnements',
+    items: [
+      'Automatisation industrielle : PLC, HMI, SCADA, réseaux industriels',
+      'Digitalisation & IT : IoT, MES, ERP, Cloud, Edge Computing',
+      'Data & intelligence : analyse de données, tableaux de bord, KPI, modèles prédictifs',
+      'Cybersécurité : sécurisation des infrastructures IT & OT, gouvernance et conformité',
+    ],
+  },
+  {
+    title: 'Approche technologique',
+    items: [
+      'Solutions interopérables et évolutives',
+      'Respect des standards internationaux',
+      'Intégration fluide avec les systèmes existants',
+      'Orientation performance, sécurité et durabilité',
+    ],
+  },
+  {
+    title: 'Partenariats stratégiques',
+    items: [
+      'Collaboration avec des éditeurs et fournisseurs de solutions industrielles et IT',
+      'Partenariats technologiques pour le déploiement de solutions ERP, IoT, supervision et data',
+      'Coopérations orientées innovation, R&D et transfert de compétences',
+    ],
+  },
+];
+---
+
+<BaseLayout seo={seo} schema={schema}>
+
+  <!-- Header -->
+  <section class="mx-auto max-w-[85rem] px-4 pt-44 pb-12 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl font-bold text-slate-800 sm:text-5xl md:text-6xl">
+        Partenariats &amp;<br/><span class="text-brand-700">technologies</span>
+      </h1>
+      <p class="mt-6 text-lg text-slate-600">
+        Aurelia s'appuie sur des partenariats stratégiques et des technologies éprouvées pour garantir
+        des solutions fiables, évolutives et alignées avec les standards industriels et IT.
+      </p>
+    </div>
+  </section>
+
+  <!-- LogieMAX — Partenariat exclusif -->
+  <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8">
+    <div class="rounded-3xl border-2 border-[#F2C811] bg-white p-8 md:p-12 shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+        <div>
+          <span class="inline-block rounded-full bg-[#F2C811]/20 px-4 py-1.5 text-xs font-bold text-slate-700 uppercase tracking-widest mb-4">
+            Partenariat exclusif
+          </span>
+          <h2 class="text-2xl font-bold text-slate-800 mb-3">
+            Représentation ERP — <span class="text-brand-700">LogieMAX</span>
+          </h2>
+          <p class="text-brand-700 font-semibold mb-6">
+            Aurelia Automation &amp; IT Services est représentant officiel et exclusif de la solution
+            ERP LogieMAX en Afrique du Nord.
+          </p>
+          <ul class="space-y-3 mb-6">
+            {[
+              'Commercialisation de la solution ERP LogieMAX',
+              'Intégration et déploiement selon les besoins des entreprises',
+              'Accompagnement fonctionnel et technique',
+              'Support et formation des utilisateurs',
+            ].map(item => (
+              <li class="flex items-start gap-3 text-slate-700">
+                <svg class="mt-0.5 size-5 shrink-0 text-[#F2C811]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.87L12 17.77l-6.18 3.24L7 14.14 2 9.27l6.91-1.01z"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p class="text-sm text-slate-500 bg-slate-50 rounded-xl p-4">
+            LogieMAX est une solution ERP &amp; CRM complète, conçue pour optimiser la gestion,
+            renforcer la visibilité des processus et soutenir la performance opérationnelle,
+            avec un accès web et mobile.
+          </p>
+        </div>
+
+        <!-- LogieMAX logo + Aurelia logo -->
+        <div class="flex flex-col items-center justify-center gap-8">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <!-- Aurelia logo -->
+            <div class="flex items-center justify-center rounded-2xl bg-white border border-slate-200 shadow p-4" style="width:160px;height:100px;overflow:hidden;">
+              <img src="/illustrations/aurelia_automation_it_services_logo.jpg" alt="Aurelia" class="w-full h-full object-contain" loading="lazy"/>
+            </div>
+            <div class="text-3xl text-slate-300 font-light">×</div>
+            <!-- LogieMAX logo — text fallback if no image -->
+            <div class="flex items-center justify-center rounded-2xl bg-white border border-slate-200 shadow p-4" style="width:160px;height:100px;">
+              <img
+                src="/illustrations/partners/logiemax.jpg"
+                alt="LogieMAX"
+                class="w-full h-full object-contain"
+                loading="lazy"
+                onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-size:24px;font-weight:900;color:#1B3A7A;\'>Logie<span style=\'color:#2E8B57;\'>MAX</span></span>'"
+              />
+            </div>
+          </div>
+          <div class="rounded-xl bg-brand-50 border border-brand-200 px-6 py-4 text-center">
+            <p class="text-sm font-bold text-brand-700">Représentant exclusif</p>
+            <p class="text-xs text-slate-500 mt-0.5">Tunisie &amp; Afrique du Nord</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies & Partenariats -->
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8">
+    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-8 md:p-12">
+      <h2 class="text-2xl font-bold text-slate-800 mb-2">Technologies &amp; environnements</h2>
+      <p class="text-slate-600 mb-10 max-w-2xl">
+        Nous maîtrisons l'ensemble de la stack technologique industrielle et IT pour délivrer
+        des solutions complètes, durables et parfaitement intégrées.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {technologies.map(g => (
+          <div>
+            <h3 class="font-bold text-brand-700 mb-4 text-sm uppercase tracking-wide border-b border-brand-100 pb-2">{g.title}</h3>
+            <ul class="space-y-2.5">
+              {g.items.map(item => (
+                <li class="flex items-start gap-2 text-sm text-slate-600">
+                  <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-500"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partenaires & Références avec logos -->
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl font-bold text-slate-800 md:text-3xl">
+        Nos partenaires &amp; <span class="text-brand-700">nos références</span>
+      </h2>
+      <p class="mt-3 text-slate-500">Ils nous font confiance pour leur transformation industrielle et digitale</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      {partners.map(p => (
+        <div class="flex items-center justify-center rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-200 aspect-[3/2]">
+          <img
+            src={p.logo}
+            alt={p.name}
+            class="max-h-14 max-w-full object-contain"
+            loading="lazy"
+            decoding="async"
+            onerror={`this.style.display='none'; this.nextElementSibling.style.display='flex'`}
+          />
+          <span class="hidden items-center justify-center text-xs font-semibold text-slate-500 text-center px-1">{p.name}</span>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-6 text-center text-sm text-slate-400">
+      Et bien d'autres entreprises en Tunisie et en Afrique du Nord
+    </p>
+  </section>
+
+</BaseLayout>

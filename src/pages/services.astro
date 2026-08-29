@@ -53,7 +53,7 @@ const expertise = [
     title: 'Conseil et accompagnement stratégique',
     color: 'brand',
     items: [
-      'Audit industriel et digital maturity assessment',
+      'Audit industriel et évaluation de maturité digitale',
       'Identification des axes d\'optimisation et d\'innovation',
       'Accompagnement pour la transformation digitale et la transition vers l\'Industrie 4.0',
       'Formation et montée en compétences des équipes',
@@ -61,40 +61,9 @@ const expertise = [
   },
 ];
 
-const technologies = {
-  groups: [
-    {
-      title: 'Technologies & environnements',
-      items: [
-        'Automatisation industrielle : PLC, HMI, SCADA, réseaux industriels',
-        'Digitalisation & IT : IoT, MES, ERP, Cloud, Edge Computing',
-        'Data & intelligence : analyse de données, tableaux de bord, KPI, modèles prédictifs',
-        'Cybersécurité : sécurisation des infrastructures IT & OT, gouvernance et conformité',
-      ],
-    },
-    {
-      title: 'Approche technologique',
-      items: [
-        'Solutions interopérables et évolutives',
-        'Respect des standards internationaux',
-        'Intégration fluide avec les systèmes existants',
-        'Orientation performance, sécurité et durabilité',
-      ],
-    },
-    {
-      title: 'Partenariats stratégiques',
-      items: [
-        'Collaboration avec des éditeurs et fournisseurs de solutions industrielles et IT',
-        'Partenariats technologiques pour le déploiement de solutions ERP, IoT, supervision et data',
-        'Coopérations orientées innovation, R&D et transfert de compétences',
-      ],
-    },
-  ],
-};
-
 const seo = {
   title: 'Services — Aurelia Automation & IT Services',
-  description: 'Automatisation industrielle, digitalisation, cybersécurité, exploitation des données et conseil stratégique. Représentant exclusif ERP LogieMAX en Afrique du Nord.',
+  description: 'Automatisation industrielle, digitalisation, cybersécurité, exploitation des données et conseil stratégique pour l\'Industrie 4.0.',
 };
 const schema: WithContext<Thing> = {
   '@context': 'https://schema.org', '@type': 'WebPage',
@@ -119,7 +88,7 @@ const schema: WithContext<Thing> = {
     </div>
   </section>
 
-  <!-- 5 Expertise domains -->
+  <!-- 5 Domaines d'expertise -->
   <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {expertise.map(e => (
@@ -140,62 +109,20 @@ const schema: WithContext<Thing> = {
         </div>
       ))}
 
-      <!-- LogieMAX card — spans remaining space -->
-      <div class="group relative rounded-2xl border border-[#F2C811]/60 bg-white p-8 shadow-sm hover:shadow-xl transition-all duration-300 md:col-span-2 lg:col-span-1">
-        <div class="absolute top-0 left-0 w-1.5 h-full rounded-l-2xl bg-[#F2C811]"></div>
-        <div class="mb-4 flex items-center gap-3">
-          <span class="rounded-lg bg-[#F2C811]/20 px-3 py-1 text-xs font-bold text-slate-700 uppercase tracking-widest">Partenariat exclusif</span>
-        </div>
-        <h2 class="text-lg font-bold text-slate-800 mb-2">Représentation ERP — LogieMAX</h2>
-        <p class="text-sm font-semibold text-brand-700 mb-4">
+      <!-- Lien vers partenariats -->
+      <div class="group relative rounded-2xl border border-brand-100 bg-brand-50 p-8 flex flex-col justify-center items-start hover:border-brand-300 transition-all duration-300 md:col-span-2 lg:col-span-1">
+        <span class="text-4xl font-black text-brand-100 mb-3">+</span>
+        <h2 class="text-lg font-bold text-brand-700 mb-3">Représentation ERP LogieMAX</h2>
+        <p class="text-sm text-slate-600 mb-5">
           Aurelia est représentant officiel et exclusif de la solution ERP LogieMAX en Afrique du Nord.
+          Découvrez également nos partenariats stratégiques et références clients.
         </p>
-        <ul class="space-y-2 mb-4">
-          {[
-            'Commercialisation de la solution ERP LogieMAX',
-            'Intégration et déploiement selon les besoins des entreprises',
-            'Accompagnement fonctionnel et technique',
-            'Support et formation des utilisateurs',
-          ].map(item => (
-            <li class="flex items-start gap-2 text-sm text-slate-600">
-              <svg class="mt-0.5 size-4 shrink-0 text-[#F2C811]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/>
-              </svg>
-              {item}
-            </li>
-          ))}
-        </ul>
-        <p class="text-xs text-slate-500">
-          LogieMAX est une solution ERP &amp; CRM complète, conçue pour optimiser la gestion,
-          renforcer la visibilité des processus et soutenir la performance opérationnelle,
-          avec accès web et mobile.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Technologies & Partenariats -->
-  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
-    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-8 md:p-12">
-      <h2 class="text-2xl font-bold text-slate-800 mb-2">Partenariats &amp; technologies</h2>
-      <p class="text-slate-600 mb-8 max-w-2xl">
-        Aurelia s'appuie sur des partenariats stratégiques et des technologies éprouvées pour garantir
-        des solutions fiables, évolutives et alignées avec les standards industriels et IT.
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {technologies.groups.map(g => (
-          <div>
-            <h3 class="font-bold text-brand-700 mb-3 text-sm uppercase tracking-wide">{g.title}</h3>
-            <ul class="space-y-2">
-              {g.items.map(item => (
-                <li class="flex items-start gap-2 text-sm text-slate-600">
-                  <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-500"></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <a href="/partenaires" class="inline-flex items-center gap-2 text-sm font-bold text-brand-700 hover:gap-3 transition-all">
+          Voir nos partenariats
+          <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -205,11 +132,11 @@ const schema: WithContext<Thing> = {
     <div class="relative overflow-hidden rounded-3xl bg-brand-700 px-8 py-14 text-center sm:px-16">
       <h2 class="relative text-2xl font-semibold text-white sm:text-3xl">Vous avez un projet ?</h2>
       <p class="relative mt-4 text-brand-100 max-w-xl mx-auto">
-        Notre équipe est disponible pour analyser vos besoins et vous proposer la solution la mieux adaptée.
+        Notre équipe est disponible pour analyser vos besoins et vous proposer la solution la mieux adaptée à votre contexte.
       </p>
       <div class="relative mt-8">
         <Button href="/contact" variant="tertiary" className="inline-flex border-none px-6! font-semibold text-brand-800">
-          Demander une évaluation gratuite
+          Nous contacter
         </Button>
       </div>
     </div>

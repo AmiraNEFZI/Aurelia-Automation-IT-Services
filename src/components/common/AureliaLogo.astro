@@ -1,27 +1,59 @@
 ---
+/**
+ * AureliaLogo — affiche le vrai logo JPG Aurelia
+ * Technique : overflow:hidden + object-cover + scale
+ * pour éliminer les marges blanches internes du JPG
+ * sans agrandir la navbar.
+ */
 export interface Props {
-  size?: string;
+  size?: 'navbar' | 'footer' | 'page' | string;
   class?: string;
 }
-const { size, class: extra = '' } = Astro.props;
-
-const dims: Record<string, { w: number; h: number }> = {
-  navbar: { w: 200, h: 60 },
-  sm:     { w: 200, h: 60 },
-  footer: { w: 200, h: 60 },
-  md:     { w: 200, h: 60 },
-  page:   { w: 260, h: 78 },
-  lg:     { w: 260, h: 78 },
-};
-const d = dims[size ?? 'footer'] ?? dims['footer'];
+const { size = 'footer', class: extra = '' } = Astro.props;
 ---
-<img
-  src="/illustrations/aurelia_automation_it_services_logo.jpg"
-  alt="Aurelia Automation & IT Services"
-  width={d.w}
-  height={d.h}
-  class={`block object-contain ${extra}`}
-  style={`width:${d.w}px;height:${d.h}px;max-width:100%;`}
-  loading="eager"
-  decoding="async"
-/>
+
+{size === 'navbar' ? (
+  <!-- Navbar : fenêtre 160×44px, image zoomée pour combler les marges blanches -->
+  <div
+    class={`overflow-hidden rounded-sm flex-none shrink-0 ${extra}`}
+    style="width:160px; height:44px;"
+    aria-label="Aurelia Automation & IT Services"
+  >
+    <img
+      src="/illustrations/aurelia_automation_it_services_logo.jpg"
+      alt="Aurelia Automation & IT Services"
+      loading="eager"
+      decoding="async"
+      style="width:190px; height:58px; margin-top:-7px; margin-left:-12px; object-fit:cover; display:block;"
+    />
+  </div>
+) : size === 'footer' ? (
+  <div
+    class={`overflow-hidden rounded-sm flex-none ${extra}`}
+    style="width:170px; height:50px;"
+    aria-label="Aurelia Automation & IT Services"
+  >
+    <img
+      src="/illustrations/aurelia_automation_it_services_logo.jpg"
+      alt="Aurelia Automation & IT Services"
+      loading="eager"
+      decoding="async"
+      style="width:202px; height:62px; margin-top:-6px; margin-left:-14px; object-fit:cover; display:block;"
+    />
+  </div>
+) : (
+  <!-- page / lg : grand format -->
+  <div
+    class={`overflow-hidden rounded-sm flex-none ${extra}`}
+    style="width:220px; height:65px;"
+    aria-label="Aurelia Automation & IT Services"
+  >
+    <img
+      src="/illustrations/aurelia_automation_it_services_logo.jpg"
+      alt="Aurelia Automation & IT Services"
+      loading="eager"
+      decoding="async"
+      style="width:262px; height:80px; margin-top:-8px; margin-left:-18px; object-fit:cover; display:block;"
+    />
+  </div>
+)}

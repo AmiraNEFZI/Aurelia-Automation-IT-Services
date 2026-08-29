@@ -18,6 +18,7 @@ const founders = [
   {
     name: 'Kachouti Hassen',
     role: 'Founder & Chief Executive Officer',
+    photo: '/illustrations/hassen-kachouti.jpg',
     expertise: [
       'Expert en Technologies de l\'Information, management des Systèmes d\'Information',
       'Manager de Projets, Spécialiste en sciences des données, analyse de données et Intelligence Artificielle',
@@ -25,12 +26,14 @@ const founders = [
       'Spécialiste en Industrie 4.0 et l\'Agro-alimentaire 4.0 : Application des nouvelles technologies pour les usines',
       'Ex-colonel Major de l\'Armée Tunisienne, plus de 30 ans de services',
       'Parcours professionnel au sein du Ministère de la Défense Nationale Tunisienne',
+      'Polyvalence, volonté et engagement envers l\'innovation et la transformation digitale',
       'Consultant et Formateur',
     ],
   },
   {
     name: 'Kachouti Adem',
     role: 'Co-Founder',
+    photo: '/illustrations/adem-kachouti.jpg',
     expertise: [
       'Spécialiste en maintenance de machines industrielles et solutions d\'automatisation',
       'Réalisation de projets industriels innovants et modernisation de machines',
@@ -60,38 +63,43 @@ const sectors = [
         Présentation d'<span class="text-brand-700">Aurelia</span><br/>Automation &amp; IT Services
       </h1>
       <p class="mt-6 text-lg text-slate-600 leading-relaxed">
-        Aurelia Automation &amp; IT Services, fondée par <strong>Hassen et Adem Kachouti</strong>,
-        est un acteur de référence en automatisation industrielle et IT pour l'industrie en Tunisie
-        et en Afrique du Nord.
+        Aurelia Automation &amp; IT Services, fondée par <strong class="text-brand-700">Hassen et Adem Kachouti</strong>,
+        est un acteur de référence en automatisation industrielle et IT pour l'industrie en Tunisie et en Afrique du Nord.
       </p>
       <p class="mt-4 text-lg text-slate-600 leading-relaxed">
-        Nous accompagnons les entreprises dans leur optimisation opérationnelle et leur transition
-        vers l'Industrie 4.0, grâce à des solutions intégrées d'automatisation, digitalisation et
-        exploitation intelligente des données, reposant sur innovation technologique, excellence
-        opérationnelle et accompagnement sur mesure.
+        Nous accompagnons les entreprises dans leur optimisation opérationnelle et leur transition vers l'Industrie 4.0,
+        grâce à des solutions intégrées d'automatisation, digitalisation et exploitation intelligente des données,
+        reposant sur innovation technologique, excellence opérationnelle et accompagnement sur mesure.
       </p>
     </div>
   </section>
 
   <!-- Fondateurs -->
-  <section class="mx-auto max-w-[85rem] px-4 py-16 sm:px-6 lg:px-8">
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-bold text-slate-800 mb-12">
       Les <span class="text-brand-700">fondateurs</span>
     </h2>
-    <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
       {founders.map(f => (
         <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-lg transition-shadow duration-300">
-          <div class="flex items-start gap-6 mb-6">
-            <div class="size-20 shrink-0 rounded-full bg-brand-100 flex items-center justify-center overflow-hidden border-4 border-brand-200">
-              <svg class="size-12 text-brand-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-              </svg>
+          <!-- Photo + nom -->
+          <div class="flex items-center gap-5 mb-6">
+            <div class="size-24 shrink-0 rounded-full overflow-hidden border-4 border-brand-100 bg-slate-100">
+              <img
+                src={f.photo}
+                alt={f.name}
+                class="w-full h-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'; this.parentElement.innerHTML='<svg class=\'w-full h-full text-brand-300\' fill=\'currentColor\' viewBox=\'0 0 24 24\'><path d=\'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z\'/></svg>'"
+              />
             </div>
             <div>
               <h3 class="text-xl font-bold text-brand-700">{f.name}</h3>
-              <p class="text-sm font-medium text-teal-600 mt-0.5">{f.role}</p>
+              <p class="text-sm font-semibold text-teal-600 mt-0.5">{f.role}</p>
             </div>
           </div>
+          <!-- Expertise -->
           <ul class="space-y-2.5">
             {f.expertise.map(item => (
               <li class="flex items-start gap-2.5 text-sm text-slate-600">
@@ -107,18 +115,17 @@ const sectors = [
     </div>
   </section>
 
-  <!-- Notre valeur ajoutée -->
-  <section class="mx-auto max-w-[85rem] px-4 py-16 sm:px-6 lg:px-8">
+  <!-- Valeur ajoutée + Pourquoi nous choisir -->
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
     <div class="rounded-3xl bg-brand-50 border border-brand-100 p-10 md:p-14">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div>
-          <h2 class="text-3xl font-bold text-slate-800 mb-6">Notre <span class="text-brand-700">valeur ajoutée</span></h2>
+          <h2 class="text-2xl font-bold text-slate-800 mb-5">Notre <span class="text-brand-700">valeur ajoutée</span></h2>
           <p class="text-slate-600 leading-relaxed">
             <strong class="text-brand-700">Aurelia Automation &amp; IT Services</strong> se distingue par sa capacité
             à transformer les défis industriels et digitaux en résultats concrets et mesurables. Grâce à une expertise
             technique complète couvrant l'automatisation, l'IT, la digitalisation, la cybersécurité et l'exploitation
-            des données, nous proposons des solutions sur mesure, flexibles et évolutives, parfaitement adaptées aux
-            besoins de chaque client.
+            des données, nous proposons des solutions sur mesure, flexibles et évolutives.
           </p>
           <p class="mt-4 text-slate-600 leading-relaxed">
             Notre approche allie innovation technologique, optimisation des processus et performance énergétique,
@@ -127,16 +134,17 @@ const sectors = [
           </p>
         </div>
         <div>
-          <h2 class="text-3xl font-bold text-slate-800 mb-6">Pourquoi <span class="text-teal-600">nous choisir</span></h2>
+          <h2 class="text-2xl font-bold text-slate-800 mb-5">Pourquoi <span class="text-teal-600">nous choisir</span></h2>
           <p class="text-slate-600 leading-relaxed">
-            Choisir <strong class="text-brand-700">Aurelia Automation &amp; IT Services</strong>, c'est collaborer avec
-            un partenaire fiable, innovant et visionnaire, capable de transformer vos défis industriels et digitaux en
-            solutions performantes et mesurables.
+            Choisir <strong class="text-brand-700">Aurelia</strong>, c'est collaborer avec un partenaire fiable,
+            innovant et visionnaire, capable de transformer vos défis industriels et digitaux en solutions
+            performantes et mesurables.
           </p>
           <p class="mt-4 text-slate-600 leading-relaxed">
             Notre vision est de contribuer à l'Industrie 4.0 en Afrique du Nord, en accompagnant les entreprises
-            vers la digitalisation, l'efficacité opérationnelle et la durabilité. Notre engagement se traduit par
-            une amélioration tangible de la performance, de la fiabilité et de l'efficacité énergétique.
+            vers la digitalisation, l'efficacité opérationnelle et la durabilité. Nous combinons expertise technique
+            approfondie, approche sur mesure et maîtrise des dernières technologies pour répondre aux besoins
+            spécifiques de chaque client.
           </p>
         </div>
       </div>
@@ -144,9 +152,9 @@ const sectors = [
   </section>
 
   <!-- Secteurs d'activité -->
-  <section class="mx-auto max-w-[85rem] px-4 py-16 sm:px-6 lg:px-8">
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
     <div class="rounded-3xl bg-brand-700 px-10 py-12 text-white">
-      <h2 class="text-3xl font-bold mb-3">Secteurs d'activité</h2>
+      <h2 class="text-2xl font-bold mb-3">Secteurs d'activité</h2>
       <p class="text-brand-100 mb-8 max-w-2xl">
         Aurelia intervient auprès d'entreprises de différents secteurs, en apportant des solutions adaptées
         à leurs enjeux industriels, digitaux et énergétiques.

@@ -1,42 +1,48 @@
 ---
 const partners = [
-  'CMC', 'Aurelia Smart Food', 'ADT', 'STEG International Services',
-  'REACTIV', 'WAVSON', 'RCI3D', 'Esprit', 'DEAP',
-  'Alpha Technology', 'SOTACID Zaghouan',
+  { name: 'CMC', logo: '/illustrations/partners/cmc.jpg' },
+  { name: 'Aurelia Smart Food', logo: '/illustrations/partners/aurelia-smart-food.jpg' },
+  { name: 'ADT', logo: '/illustrations/partners/adt.jpg' },
+  { name: 'STEG International Services', logo: '/illustrations/partners/steg.jpg' },
+  { name: 'WAVSON', logo: '/illustrations/partners/wavson.jpg' },
+  { name: 'RCI3D', logo: '/illustrations/partners/rci3d.jpg' },
+  { name: 'Esprit', logo: '/illustrations/partners/esprit.jpg' },
+  { name: 'Alpha Technology', logo: '/illustrations/partners/alpha-technology.jpg' },
+  { name: 'SOTACID Zaghouan', logo: '/illustrations/partners/sotacid.jpg' },
+  { name: 'REACTIV', logo: '/illustrations/partners/reactiv.jpg' },
+  { name: 'DEAP', logo: '/illustrations/partners/deap.jpg' },
 ];
 ---
 
 <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
   <div class="text-center mb-10">
     <h2 class="text-2xl font-bold text-slate-800 md:text-3xl">
-      Nos partenaires &amp; <span class="text-brand-700">nos références</span>
+      Ils nous font <span class="text-brand-700">confiance</span>
     </h2>
-    <p class="mt-3 text-slate-500">Ils nous font confiance pour leur transformation industrielle et digitale</p>
+    <p class="mt-2 text-slate-500 text-sm">Nos partenaires et références en Tunisie et en Afrique du Nord</p>
   </div>
 
-  <!-- Partners logo grid — text-based since no logo images available -->
+  <!-- Logos row -->
   <div class="flex flex-wrap items-center justify-center gap-4">
     {partners.map(p => (
-      <div class="flex items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-4 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-200 min-w-[140px]">
-        <span class="text-sm font-semibold text-slate-600 text-center">{p}</span>
+      <div class="flex items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 shadow-sm hover:border-brand-300 hover:shadow-md transition-all duration-200" style="min-width:110px; height:64px;">
+        <img
+          src={p.logo}
+          alt={p.name}
+          class="max-h-10 max-w-[90px] object-contain"
+          loading="lazy"
+          decoding="async"
+          onerror={`this.style.display='none'; this.nextElementSibling.style.display='block'`}
+        />
+        <span class="hidden text-xs font-semibold text-slate-500 text-center">{p.name}</span>
       </div>
     ))}
   </div>
 
-  <!-- Secteurs -->
-  <div class="mt-14 text-center mb-6">
-    <h3 class="text-xl font-bold text-slate-700">Secteurs d'activité</h3>
-    <p class="mt-1 text-sm text-slate-500">Industries dans lesquelles nous intervenons</p>
-  </div>
-  <div class="flex flex-wrap items-center justify-center gap-3">
-    {[
-      'Industrie Manufacturière','Agroalimentaire','Textile & Habillement',
-      'Énergie & Utilités','Industries Mécaniques','Logistique & Distribution',
-      'Automotive','Pétrole & Gaz','Services IT','Banque & Assurances',
-    ].map(s => (
-      <span class="rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700">
-        {s}
-      </span>
-    ))}
+  <div class="mt-6 text-center">
+    <a href="/partenaires" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:underline">
+      Voir tous nos partenariats
+      <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
+    </a>
   </div>
 </section>

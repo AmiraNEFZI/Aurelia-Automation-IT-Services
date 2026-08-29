@@ -2,10 +2,6 @@
 import Icon from '@ui/icons/Icon.astro';
 import FeatureCard from '@common/FeatureCard.astro';
 import Button from '@ui/Button.astro';
-
-const title    = 'Leaders in Industry 4.0 — Shaping Change';
-const subTitle = 'Our independent and innovative approach enables us to meet the requirements of a wide range of sectors. We are committed to providing ethical technology solutions that improve productivity while ensuring employee safety.';
-const cta      = { text: 'Our Approach', href: '/about' };
 ---
 
 <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20">
@@ -22,49 +18,39 @@ const cta      = { text: 'Our Approach', href: '/about' };
 
     <div class="mx-auto my-auto max-w-md text-left sm:text-center lg:mx-0 lg:flex-auto lg:text-left">
       <h2 class="text-2xl font-semibold tracking-tight text-balance text-white md:text-3xl md:leading-tight">
-        {title}
+        Leaders de l'Industrie 4.0 — Façonnons le changement ensemble
       </h2>
       <p class="mt-6 text-lg/8 text-pretty text-brand-100">
-        {subTitle}
+        Notre approche indépendante et innovante nous permet de répondre aux exigences d'un large
+        éventail de secteurs. Nous nous engageons à fournir des solutions technologiques responsables
+        qui améliorent la productivité tout en assurant la sécurité des équipes.
       </p>
       <div class="mt-10 flex items-center justify-start gap-x-6 sm:justify-center lg:justify-start">
-        <Button
-          href={cta.href}
-          variant="tertiary"
-          className="group inline-flex items-center justify-center gap-x-2 py-2.5! pr-4 pl-5 text-brand-800"
-        >{cta.text}<Icon name="chevronRight" /></Button>
+        <Button href="/methodology" variant="tertiary" className="group inline-flex items-center justify-center gap-x-2 py-2.5! pr-4 pl-5 text-brand-800 font-semibold">
+          Notre méthodologie
+          <Icon name="chevronRight" />
+        </Button>
       </div>
     </div>
 
     <div class="relative my-16 flex flex-col gap-y-7 lg:my-8 2xl:h-full">
-      <FeatureCard icon="dataBase"   description="Digital maturity audit & gap analysis of your current industrial systems." styleClass="" />
-
+      <FeatureCard icon="dataBase" description="Audit & diagnostic complet de vos systèmes industriels et IT existants." styleClass="" />
       <svg class="line-connector absolute z-0 hidden w-1/2 xl:top-[25%] xl:left-[10%] xl:block" viewBox="0 0 200 300">
-        <path class="base-line"  d="M1 0.5V50C1 63.8071 12.1929 75 26 75H70" stroke="#d1fae5" stroke-width="1" fill="transparent"/>
-        <path class="beam-line"  d="M1 0.5V50C1 63.8071 12.1929 75 26 75H70" stroke="#2E8B57" stroke-width="1" fill="transparent"/>
+        <path class="base-line" d="M1 0.5V50C1 63.8071 12.1929 75 26 75H70" stroke="#d1fae5" stroke-width="1" fill="transparent"/>
+        <path class="beam-line" d="M1 0.5V50C1 63.8071 12.1929 75 26 75H70" stroke="#2E8B57" stroke-width="1" fill="transparent"/>
       </svg>
-
-      <FeatureCard icon="brain"      description="Design & deployment of automation, IoT and AI solutions tailored to your processes." styleClass="self-center" />
-
+      <FeatureCard icon="brain" description="Conception et déploiement de la solution adaptée : Automation, IT, ERP, IoT, Data." styleClass="self-center" />
       <svg class="line-connector absolute hidden w-1/2 xl:top-[55%] xl:left-[70%] xl:block" viewBox="0 0 200 300">
-        <path class="base-line"  d="M0.5 1.5H56C69.8071 1.5 81 12.6929 81 26.5V73" stroke="#d1fae5" stroke-width="1" fill="transparent"/>
-        <path class="beam-line"  d="M0.5 1.5H56C69.8071 1.5 81 12.6929 81 26.5V73" stroke="#2E8B57" stroke-width="1" fill="transparent"/>
+        <path class="base-line" d="M0.5 1.5H56C69.8071 1.5 81 12.6929 81 26.5V73" stroke="#d1fae5" stroke-width="1" fill="transparent"/>
+        <path class="beam-line" d="M0.5 1.5H56C69.8071 1.5 81 12.6929 81 26.5V73" stroke="#2E8B57" stroke-width="1" fill="transparent"/>
       </svg>
-
-      <FeatureCard icon="lightbulb"  description="Go-live, Power BI dashboards & continuous performance optimisation." styleClass="self-end" />
+      <FeatureCard icon="lightbulb" description="Mise en production, formation des équipes et support continu post-déploiement." styleClass="self-end" />
     </div>
   </div>
 </section>
 
 <style>
-  .beam-line {
-    stroke-dasharray: 200; stroke-dashoffset: 200;
-    animation: beam 5s ease-in-out infinite;
-  }
+  .beam-line { stroke-dasharray: 200; stroke-dashoffset: 200; animation: beam 5s ease-in-out infinite; }
   .line-connector:nth-of-type(2) .beam-line { animation-delay: 2.5s; }
-  @keyframes beam {
-    0%   { stroke-dashoffset: 200; }
-    50%  { stroke-dashoffset: 0; }
-    100% { stroke-dashoffset: -200; }
-  }
+  @keyframes beam { 0% { stroke-dashoffset: 200; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -200; } }
 </style>
