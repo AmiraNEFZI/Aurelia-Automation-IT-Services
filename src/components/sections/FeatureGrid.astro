@@ -1,32 +1,32 @@
 ---
 import Icon from '@ui/icons/Icon.astro';
 
-const title    = 'Why choose <span class="text-brand-700">Aurelia</span>?';
-const subTitle = 'Our independent and innovative approach sets us apart. We deliver tailor-made solutions — no vendor lock-in, no one-size-fits-all — just the right technology, properly implemented, to genuinely transform your operations and protect your people.';
+const title = 'Pourquoi choisir <span class="text-brand-700">Aurelia</span> ?';
+const subTitle = 'Choisir Aurelia, c\'est collaborer avec un partenaire fiable, innovant et visionnaire. Notre vision : contribuer à l\'Industrie 4.0 en Afrique du Nord, en accompagnant les entreprises vers la digitalisation, l\'efficacité opérationnelle et la durabilité.';
 
 const features = [
   {
-    borderClasses:   'md:border-l md:border-r',
+    borderClasses: 'md:border-l md:border-r',
     gradientClasses: 'bg-linear-to-l/oklch from-brand-100 to-transparent',
-    icon:    'cursorRays',
-    heading: 'Independent & Innovative',
-    description: 'No vendor lock-in. Our engineering team selects the best-fit technology for your specific context, budget and sector — from robotics and PLCs to cloud-native AI platforms.',
+    icon: 'cursorRays',
+    heading: 'Expertise technique complète',
+    description: 'Automatisation industrielle, IT, digitalisation, cybersécurité et exploitation des données — une seule équipe, une expertise couvrant toute la chaîne de valeur industrielle.',
   },
   {
-    borderClasses:   'border-b border-t md:border-b-0',
-    gridClasses:     'md:col-start-2 md:col-end-3',
+    borderClasses: 'border-b border-t md:border-b-0',
+    gridClasses: 'md:col-start-2 md:col-end-3',
     gradientClasses: 'bg-linear-to-t/oklch from-teal-100 to-transparent',
-    icon:    'cog',
-    heading: 'Industry 4.0 Specialists',
-    description: 'From SCADA and PLC programming to IoT sensor networks and machine-learning pipelines, we bring deep industrial automation expertise to every project we take on.',
+    icon: 'cog',
+    heading: 'Approche sur mesure & locale',
+    description: 'Acteur ancré en Tunisie et en Afrique du Nord, nous comprenons les réalités industrielles locales et proposons des solutions adaptées aux besoins et contraintes spécifiques de chaque entreprise.',
   },
   {
-    borderClasses:   'md:border-l md:border-r md:border-t',
-    gridClasses:     'md:col-end-4',
+    borderClasses: 'md:border-l md:border-r md:border-t',
+    gridClasses: 'md:col-end-4',
     gradientClasses: 'bg-linear-to-tl/oklch from-brand-100 to-transparent',
-    icon:    'puzzle',
-    heading: 'Safety & Ethics First',
-    description: 'We are committed to technology solutions that improve productivity while ensuring employee safety — a non-negotiable principle embedded in every system we design and deploy.',
+    icon: 'puzzle',
+    heading: 'Accompagnement post-déploiement',
+    description: 'Notre engagement ne s\'arrête pas à la livraison. Support continu, maintenance, optimisation et formation des équipes — nous garantissons une performance durable, fiable et pérenne.',
   },
 ];
 ---
@@ -37,9 +37,7 @@ const features = [
       <h2 class="text-2xl font-semibold tracking-tight text-balance text-slate-800 md:text-3xl md:leading-tight">
         <Fragment set:html={title} />
       </h2>
-      <p class="mt-6 text-start text-lg/8 text-pretty text-slate-700 sm:text-center md:text-start">
-        {subTitle}
-      </p>
+      <p class="mt-6 text-start text-lg/8 text-pretty text-slate-700 sm:text-center md:text-start">{subTitle}</p>
     </div>
 
     {features.map(feature => (

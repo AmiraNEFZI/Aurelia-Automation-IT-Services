@@ -1,0 +1,196 @@
+---
+export const prerender = true;
+import BaseLayout from '@layout/BaseLayout.astro';
+import Button from '@ui/Button.astro';
+import type { WithContext, Thing } from 'schema-dts';
+
+const steps = [
+  {
+    num: '1',
+    title: 'Analyse & Compréhension du besoin',
+    color: 'brand',
+    items: [
+      'Écoute active du client',
+      'Analyse des processus existants',
+      'Identification des contraintes techniques et opérationnelles',
+      'Définition claire des objectifs (performance, coût, délai)',
+    ],
+  },
+  {
+    num: '2',
+    title: 'Audit & Diagnostic technique',
+    color: 'teal',
+    items: [
+      'Inspection sur site (machines, automatismes, IT, réseaux)',
+      'Évaluation de l\'état des systèmes existants',
+      'Analyse des risques, performances et points d\'amélioration',
+      'Recommandations techniques documentées',
+    ],
+  },
+  {
+    num: '3',
+    title: 'Conception de la solution',
+    color: 'brand',
+    items: [
+      'Architecture technique adaptée (Automation, IT, ERP, IoT, Data)',
+      'Choix des technologies et partenaires',
+      'Définition du planning et du budget',
+      'Validation avec le client',
+    ],
+  },
+  {
+    num: '4',
+    title: 'Implémentation & Intégration',
+    color: 'teal',
+    items: [
+      'Déploiement de la solution',
+      'Programmation et configuration',
+      'Intégration avec les systèmes existants',
+      'Tests fonctionnels et mise en service',
+    ],
+  },
+  {
+    num: '5',
+    title: 'Validation & Mise en production',
+    color: 'brand',
+    items: [
+      'Tests finaux et recettes client',
+      'Ajustements et optimisation',
+      'Documentation technique',
+      'Formation des équipes',
+    ],
+  },
+  {
+    num: '6',
+    title: 'Support & Amélioration continue',
+    color: 'teal',
+    items: [
+      'Assistance technique et maintenance',
+      'Suivi des performances',
+      'Optimisation continue des systèmes',
+      'Évolution et montée en charge des solutions',
+    ],
+  },
+];
+
+const caseStudy = {
+  title: 'Projet SCADA & Business Intelligence — ADT Plastic',
+  description: 'Mise en place d\'une solution industrielle intelligente permettant la supervision en temps réel de 9 machines de production et l\'analyse des performances industrielles.',
+  details: [
+    'Acquisition automatique des données depuis les automates Siemens',
+    'Traitement via une plateforme de données centralisée',
+    'Interfaces de supervision SCADA et tableaux de bord BI',
+    'Suivi en temps réel de l\'état des machines et de la production',
+    'Comptage automatique et fiable des pièces produites',
+    'Historisation des données industrielles',
+    'Calcul des indicateurs de performance (TRS, rendement, arrêts)',
+    'Génération de rapports et dashboards pour faciliter la prise de décision',
+  ],
+  architecture: 'Machines de production → Automates Siemens → Base de données → SCADA Monitoring → Dashboards BI & Reporting',
+};
+
+const seo = {
+  title: 'Méthodologie & Références — Aurelia Automation & IT Services',
+  description: 'Notre méthodologie en 6 étapes et nos projets de référence, dont le projet SCADA & BI ADT Plastic.',
+};
+const schema: WithContext<Thing> = {
+  '@context': 'https://schema.org', '@type': 'WebPage',
+  inLanguage: 'fr', '@id': Astro.url.href, url: Astro.url.href,
+  name: seo.title,
+  isPartOf: { '@type': 'WebSite', url: `${Astro.site}`, name: 'Aurelia Automation & IT Services' },
+};
+---
+
+<BaseLayout seo={seo} schema={schema}>
+
+  <!-- Methodology -->
+  <section class="mx-auto max-w-[85rem] px-4 pt-44 pb-16 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <h1 class="text-4xl font-bold text-slate-800 sm:text-5xl">
+        Notre méthodologie<br/><span class="text-brand-700">de travail</span>
+      </h1>
+      <p class="mt-4 text-lg text-slate-600">
+        Une approche structurée en 6 étapes pour garantir des résultats concrets, durables et adaptés à vos besoins.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {steps.map(step => (
+        <div class={`relative rounded-2xl border bg-white p-8 shadow-sm hover:shadow-lg transition-all duration-300 ${step.color === 'teal' ? 'border-teal-200 hover:border-teal-400' : 'border-brand-200 hover:border-brand-400'}`}>
+          <div class={`absolute top-0 left-0 w-1.5 h-full rounded-l-2xl ${step.color === 'teal' ? 'bg-teal-500' : 'bg-brand-700'}`}></div>
+          <div class={`mb-3 flex size-10 items-center justify-center rounded-full text-lg font-black text-white ${step.color === 'teal' ? 'bg-teal-600' : 'bg-brand-700'}`}>
+            {step.num}
+          </div>
+          <h3 class={`font-bold mb-4 ${step.color === 'teal' ? 'text-teal-700' : 'text-brand-700'}`}>{step.title}</h3>
+          <ul class="space-y-2">
+            {step.items.map(item => (
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <span class={`mt-1.5 size-1.5 shrink-0 rounded-full ${step.color === 'teal' ? 'bg-teal-500' : 'bg-brand-500'}`}></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Case Study ADT Plastic -->
+  <section class="mx-auto max-w-[85rem] px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <span class="inline-block rounded-full bg-teal-100 px-4 py-1.5 text-xs font-bold text-teal-700 uppercase tracking-widest mb-4">
+        Projet de référence
+      </span>
+      <h2 class="text-3xl font-bold text-slate-800">{caseStudy.title}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <div class="rounded-2xl bg-white border border-slate-200 p-8 shadow-sm">
+        <p class="text-slate-600 leading-relaxed mb-6">{caseStudy.description}</p>
+        <h3 class="font-bold text-brand-700 mb-4">La solution permet :</h3>
+        <ul class="space-y-2.5">
+          {caseStudy.details.map(item => (
+            <li class="flex items-start gap-2.5 text-sm text-slate-600">
+              <svg class="mt-0.5 size-4 shrink-0 text-brand-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-2xl bg-brand-700 p-8 text-white">
+        <h3 class="font-bold text-brand-100 text-sm uppercase tracking-widest mb-4">Architecture globale</h3>
+        <div class="flex flex-col gap-3">
+          {['Machines de production', 'Automates Siemens S7-1200', 'Base de données centralisée', 'SCADA Monitoring', 'Dashboards BI & Reporting'].map((node, i, arr) => (
+            <div class="flex flex-col items-center">
+              <div class="w-full rounded-xl bg-white/15 border border-white/25 px-4 py-3 text-center text-sm font-semibold text-white">
+                {node}
+              </div>
+              {i < arr.length - 1 && (
+                <div class="my-1 text-white/50 text-lg">↓</div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div class="mt-6 rounded-xl bg-teal-600/40 border border-teal-400/30 p-4">
+          <p class="text-xs text-teal-200 font-medium uppercase tracking-wide mb-1">Résultat</p>
+          <p class="text-sm text-white">Supervision en temps réel de 9 machines de production avec analyse complète des performances industrielles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mx-auto max-w-[85rem] px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-10 text-center">
+      <h2 class="text-2xl font-bold text-slate-800 mb-3">Prêt à démarrer votre projet ?</h2>
+      <p class="text-slate-600 max-w-xl mx-auto mb-6">Contactez-nous pour une évaluation gratuite et découvrez comment Aurelia peut transformer vos opérations.</p>
+      <Button href="/contact" variant="primary" className="inline-flex border-none px-8!">
+        Demander une évaluation gratuite
+      </Button>
+    </div>
+  </section>
+
+</BaseLayout>

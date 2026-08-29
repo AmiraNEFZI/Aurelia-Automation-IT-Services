@@ -1,64 +1,68 @@
 ---
 import FooterForm from '@ui/forms/FooterForm.astro';
-import ContactInfo from '@common/ContactInfo.astro';
 import AureliaLogo from '@common/AureliaLogo.astro';
-
-const description = 'Tailor-made automation and IT integration solutions. Leaders in Industry 4.0 — transforming your operations into a connected, agile and profit-generating ecosystem.';
-
-const contactDetails = {
-  address: 'Algeria',
-  phone: '+213 (0) XX XX XX XX',
-  email: 'contact@aurelia-it.com',
-  website: 'www.aurelia-it.com',
-};
-
-const copyrightYear = new Date().getFullYear();
+const year = new Date().getFullYear();
 ---
-
 <footer class="mt-auto w-full bg-linear-to-t/oklch from-brand-50 via-transparent to-white pb-10">
-  <div class="mx-auto mt-auto w-full max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8">
+  <div class="mx-auto w-full max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8">
     <hr class="mb-10 border-slate-200" />
 
-    <div class="grid grid-cols-2 gap-6 md:grid-cols-5">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-5">
+
       <!-- Brand -->
-      <div class="col-span-full self-center xl:col-span-2">
-        <a href="/" aria-label="Aurelia Automation & IT Services — Home" class="flex-none focus:outline-hidden">
-          <AureliaLogo size="md" />
+      <div class="col-span-full xl:col-span-2">
+        <a href="/" aria-label="Aurelia Automation & IT Services" class="focus:outline-hidden">
+          <AureliaLogo size="footer" />
         </a>
-        <p class="mt-5 text-pretty text-slate-600 lg:w-5/12 xl:w-10/12 text-sm">{description}</p>
+        <p class="mt-4 text-sm text-slate-500 max-w-xs">
+          Piloter l'efficacité, accroître la productivité, révéler la puissance des données.
+          Acteur de référence en automatisation industrielle et IT en Tunisie et en Afrique du Nord.
+        </p>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/company/aurelia-automation-it-services/" target="_blank" rel="noopener noreferrer"
+           class="mt-4 inline-flex items-center gap-2 text-sm text-brand-700 hover:text-brand-600 font-medium transition-colors">
+          <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          Suivez-nous sur LinkedIn
+        </a>
       </div>
 
-      <!-- Nav -->
+      <!-- Navigation -->
       <div class="col-span-1 xl:col-span-1 xl:col-start-3">
-        <h3 class="font-semibold text-slate-700 mb-3 text-sm uppercase tracking-widest">Navigation</h3>
-        <ul class="space-y-2 text-sm text-slate-500">
-          <li><a href="/"        class="hover:text-brand-700 transition-colors">Home</a></li>
-          <li><a href="/services" class="hover:text-brand-700 transition-colors">Services</a></li>
-          <li><a href="/about"    class="hover:text-brand-700 transition-colors">About Us</a></li>
-          <li><a href="/contact"  class="hover:text-brand-700 transition-colors">Contact</a></li>
+        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-widest mb-4">Navigation</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/" class="text-slate-500 hover:text-brand-700 transition-colors">Accueil</a></li>
+          <li><a href="/services" class="text-slate-500 hover:text-brand-700 transition-colors">Services</a></li>
+          <li><a href="/about" class="text-slate-500 hover:text-brand-700 transition-colors">À propos</a></li>
+          <li><a href="/contact" class="text-slate-500 hover:text-brand-700 transition-colors">Contact</a></li>
         </ul>
       </div>
 
       <!-- Contact -->
       <div class="col-span-1 xl:col-span-1">
-        <ContactInfo {...contactDetails} />
+        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-widest mb-4">Contact</h3>
+        <ul class="space-y-2 text-sm text-slate-500">
+          <li><a href="mailto:kachouti.adam@aurelia-itautomation.com" class="hover:text-brand-700 transition-colors break-all">kachouti.adam@<br/>aurelia-itautomation.com</a></li>
+          <li><a href="tel:+21655439968" class="hover:text-brand-700 transition-colors">+216 55 439 968</a></li>
+          <li><a href="tel:+21658972839" class="hover:text-brand-700 transition-colors">+216 58 972 839</a></li>
+          <li class="text-slate-400">Tunisie — Afrique du Nord</li>
+        </ul>
       </div>
 
       <!-- Newsletter -->
       <div class="col-span-2 md:col-span-3 xl:col-span-2">
-        <h3 class="font-semibold text-slate-700 text-sm uppercase tracking-widest">Stay informed</h3>
-        <p class="mt-1 text-sm text-slate-500">Industry 4.0 insights and company news — no spam.</p>
+        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-widest mb-1">Restez informé</h3>
+        <p class="text-sm text-slate-500 mb-2">Actualités Industrie 4.0 et innovations — sans spam.</p>
         <FooterForm />
       </div>
+
     </div>
 
     <hr class="mt-10 mb-5 border-slate-200" />
-
-    <div class="grid gap-y-2 sm:flex sm:items-center sm:justify-between sm:gap-y-0">
-      <p class="text-sm text-slate-400">
-        &copy; 2020–{copyrightYear} Aurelia Automation &amp; IT Services. All rights reserved.
-      </p>
-      <p class="text-sm text-slate-400">Industrial Automation · IoT/AI · Power BI</p>
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-xs text-slate-400">&copy; 2020–{year} Aurelia Automation &amp; IT Services. Tous droits réservés.</p>
+      <p class="text-xs text-slate-400">Automatisation industrielle · IoT/IA · Power BI · ERP LogieMAX</p>
     </div>
   </div>
 </footer>

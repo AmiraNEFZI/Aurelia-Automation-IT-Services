@@ -3,28 +3,25 @@ export interface Props {
   size?: string;
   class?: string;
 }
-
 const { size, class: extra = '' } = Astro.props;
 
 const dims: Record<string, { w: number; h: number }> = {
-  navbar:  { w: 220, h: 68 },   // modéré, lisible, professionnel
-  sm:      { w: 220, h: 68 },
-  footer:  { w: 240, h: 74 },
-  md:      { w: 240, h: 74 },
-  page:    { w: 300, h: 92 },
-  lg:      { w: 300, h: 92 },
+  navbar: { w: 200, h: 60 },
+  sm:     { w: 200, h: 60 },
+  footer: { w: 200, h: 60 },
+  md:     { w: 200, h: 60 },
+  page:   { w: 260, h: 78 },
+  lg:     { w: 260, h: 78 },
 };
-
 const d = dims[size ?? 'footer'] ?? dims['footer'];
 ---
-
 <img
   src="/illustrations/aurelia_automation_it_services_logo.jpg"
   alt="Aurelia Automation & IT Services"
   width={d.w}
   height={d.h}
-  class={`object-contain block ${extra}`}
-  style={`width:${d.w}px; height:${d.h}px; max-width:100%;`}
+  class={`block object-contain ${extra}`}
+  style={`width:${d.w}px;height:${d.h}px;max-width:100%;`}
   loading="eager"
   decoding="async"
 />

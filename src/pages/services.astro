@@ -2,151 +2,217 @@
 export const prerender = true;
 import BaseLayout from '@layout/BaseLayout.astro';
 import Button from '@ui/Button.astro';
-import Icon from '@ui/icons/Icon.astro';
 import type { WithContext, Thing } from 'schema-dts';
 
-const services = [
+const expertise = [
   {
-    icon: 'cog',
-    title: 'Industrial Automation',
-    tagline: 'Robotics · PLCs · SCADA',
-    description:
-      'Installation and maintenance of robotic systems, PLCs and SCADA networks, ensuring efficient production and reduced downtime across your entire facility.',
-    features: [
-      'Robotic system design, installation & commissioning',
-      'PLC programming (Siemens, Allen-Bradley, Schneider…)',
-      'SCADA network architecture & supervision',
-      'Predictive maintenance & downtime reduction',
-      'Legacy system modernisation & upgrades',
-    ],
+    num: '01',
+    title: 'Automatisation industrielle',
     color: 'brand',
+    items: [
+      'Conception, installation et optimisation de systèmes automatisés',
+      'Programmation et mise en service de PLC et robots industriels',
+      'Supervision HMI/SCADA et contrôle avancé des processus',
+      'Maintenance, modernisation et retrofit d\'équipements existants',
+    ],
   },
   {
-    icon: 'brain',
-    title: 'IoT & AI Integration',
-    tagline: 'Connected Machines · Smart Decisions',
-    description:
-      'Deployment of IoT and artificial intelligence solutions to modernise industrial processes, improve data collection and facilitate informed decision-making.',
-    features: [
-      'IoT sensor network design & deployment',
-      'Real-time machine data collection & monitoring',
-      'AI/ML models for anomaly detection & predictive analytics',
-      'Edge computing & cloud integration',
-      'Centralised operations dashboard',
-    ],
+    num: '02',
+    title: 'Digitalisation & IT industrielle',
     color: 'teal',
+    items: [
+      'Déploiement de solutions IoT, MES et ERP',
+      'Intégration de systèmes cloud et edge computing',
+      'Supervision et contrôle à distance des opérations',
+    ],
   },
   {
-    icon: 'presentationChart',
-    title: 'Power BI Consulting',
-    tagline: 'Data · Dashboards · Decisions',
-    description:
-      'Designing customised, interactive dashboards, transforming raw data into strategic information for better performance management.',
-    features: [
-      'Custom Power BI dashboard design & development',
-      'Data modelling, KPI definition & DAX optimisation',
-      'ERP/MES/SCADA data connectors',
-      'Automated reporting & performance tracking',
-      'User training & ongoing dashboard support',
-    ],
+    num: '03',
+    title: 'Cybersécurité & IT',
     color: 'brand',
+    items: [
+      'Protection des infrastructures IT et OT',
+      'Sécurisation des données et des communications',
+      'Audit, gouvernance et conformité aux standards de sécurité',
+      'Stratégies de cybersécurité adaptées aux besoins industriels et IT',
+    ],
+  },
+  {
+    num: '04',
+    title: 'Exploitation et valorisation des données',
+    color: 'teal',
+    items: [
+      'Collecte et traitement des données en temps réel',
+      'Analyse avancée pour optimisation de production et réduction des coûts',
+      'Tableaux de bord, KPI et indicateurs de performance personnalisés',
+      'Prévision et maintenance prédictive',
+    ],
+  },
+  {
+    num: '05',
+    title: 'Conseil et accompagnement stratégique',
+    color: 'brand',
+    items: [
+      'Audit industriel et digital maturity assessment',
+      'Identification des axes d\'optimisation et d\'innovation',
+      'Accompagnement pour la transformation digitale et la transition vers l\'Industrie 4.0',
+      'Formation et montée en compétences des équipes',
+    ],
   },
 ];
 
-const colorMap: Record<string, string> = {
-  brand: 'bg-brand-100 text-brand-700',
-  teal:  'bg-teal-100 text-teal-700',
-};
-const borderMap: Record<string, string> = {
-  brand: 'hover:border-brand-400',
-  teal:  'hover:border-teal-400',
+const technologies = {
+  groups: [
+    {
+      title: 'Technologies & environnements',
+      items: [
+        'Automatisation industrielle : PLC, HMI, SCADA, réseaux industriels',
+        'Digitalisation & IT : IoT, MES, ERP, Cloud, Edge Computing',
+        'Data & intelligence : analyse de données, tableaux de bord, KPI, modèles prédictifs',
+        'Cybersécurité : sécurisation des infrastructures IT & OT, gouvernance et conformité',
+      ],
+    },
+    {
+      title: 'Approche technologique',
+      items: [
+        'Solutions interopérables et évolutives',
+        'Respect des standards internationaux',
+        'Intégration fluide avec les systèmes existants',
+        'Orientation performance, sécurité et durabilité',
+      ],
+    },
+    {
+      title: 'Partenariats stratégiques',
+      items: [
+        'Collaboration avec des éditeurs et fournisseurs de solutions industrielles et IT',
+        'Partenariats technologiques pour le déploiement de solutions ERP, IoT, supervision et data',
+        'Coopérations orientées innovation, R&D et transfert de compétences',
+      ],
+    },
+  ],
 };
 
 const seo = {
   title: 'Services — Aurelia Automation & IT Services',
-  description: 'Industrial automation, IoT/AI integration and Power BI consulting services for automotive, pharma, energy, agri-food and logistics.',
+  description: 'Automatisation industrielle, digitalisation, cybersécurité, exploitation des données et conseil stratégique. Représentant exclusif ERP LogieMAX en Afrique du Nord.',
 };
-
 const schema: WithContext<Thing> = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  inLanguage: 'en',
-  '@id': Astro.url.href,
-  url: Astro.url.href,
-  name: 'Services — Aurelia Automation & IT Services',
-  description: seo.description,
-  isPartOf: {
-    '@type': 'WebSite',
-    url: `${Astro.site}`,
-    name: 'Aurelia Automation & IT Services',
-  },
+  '@context': 'https://schema.org', '@type': 'WebPage',
+  inLanguage: 'fr', '@id': Astro.url.href, url: Astro.url.href,
+  name: seo.title,
+  isPartOf: { '@type': 'WebSite', url: `${Astro.site}`, name: 'Aurelia Automation & IT Services' },
 };
 ---
 
 <BaseLayout seo={seo} schema={schema}>
+
   <!-- Header -->
-  <section class="mx-auto max-w-[85rem] px-4 pt-48 pb-12 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-3xl lg:mx-0">
-      <h1 class="text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl">Our Services</h1>
-      <p class="mt-6 text-lg font-medium text-pretty text-slate-700 sm:text-xl/8">
-        Three integrated service pillars built to turn your industrial operations into a connected, agile and profit-generating ecosystem.
+  <section class="mx-auto max-w-[85rem] px-4 pt-44 pb-12 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl font-bold text-slate-800 sm:text-5xl md:text-6xl">
+        Nos domaines<br/><span class="text-brand-700">d'expertise</span>
+      </h1>
+      <p class="mt-6 text-lg text-slate-600">
+        Aurelia accompagne les entreprises dans toute la chaîne de transformation industrielle et digitale,
+        grâce à une expertise pointue et des solutions sur mesure.
       </p>
     </div>
   </section>
 
-  <!-- Services cards -->
-  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-      {services.map(s => (
-        <div class={`group relative flex flex-col rounded-2xl border border-dashed border-slate-300 p-8 transition-all duration-300 hover:shadow-xl bg-white ${borderMap[s.color]}`}>
-          <div class="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-b/oklch from-slate-50 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"/>
-          <div class={`relative z-10 mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${colorMap[s.color]}`}>
-            <Icon name={s.icon} class="size-6"/>
-          </div>
-          <p class={`relative z-10 mb-1 text-xs font-bold uppercase tracking-widest ${s.color === 'teal' ? 'text-teal-600' : 'text-brand-500'}`}>{s.tagline}</p>
-          <h2 class="relative z-10 mb-3 text-xl font-bold text-slate-800">{s.title}</h2>
-          <p class="relative z-10 mb-5 text-sm text-pretty text-slate-600 grow">{s.description}</p>
-          <ul class="relative z-10 space-y-2">
-            {s.features.map(f => (
+  <!-- 5 Expertise domains -->
+  <section class="mx-auto max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {expertise.map(e => (
+        <div class={`group relative rounded-2xl border p-8 bg-white shadow-sm hover:shadow-xl transition-all duration-300 ${e.color === 'teal' ? 'border-teal-200 hover:border-teal-400' : 'border-brand-200 hover:border-brand-400'}`}>
+          <div class={`absolute top-0 left-0 w-1.5 h-full rounded-l-2xl ${e.color === 'teal' ? 'bg-teal-500' : 'bg-brand-700'}`}></div>
+          <span class={`text-4xl font-black ${e.color === 'teal' ? 'text-teal-100' : 'text-brand-100'}`}>{e.num}</span>
+          <h2 class={`mt-2 mb-4 text-lg font-bold ${e.color === 'teal' ? 'text-teal-700' : 'text-brand-700'}`}>{e.title}</h2>
+          <ul class="space-y-2">
+            {e.items.map(item => (
               <li class="flex items-start gap-2 text-sm text-slate-600">
-                <svg class={`mt-0.5 size-4 shrink-0 ${s.color === 'teal' ? 'text-teal-600' : 'text-brand-600'}`} fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class={`mt-0.5 size-4 shrink-0 ${e.color === 'teal' ? 'text-teal-600' : 'text-brand-600'}`} fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
                 </svg>
-                {f}
+                {item}
               </li>
             ))}
           </ul>
         </div>
       ))}
+
+      <!-- LogieMAX card — spans remaining space -->
+      <div class="group relative rounded-2xl border border-[#F2C811]/60 bg-white p-8 shadow-sm hover:shadow-xl transition-all duration-300 md:col-span-2 lg:col-span-1">
+        <div class="absolute top-0 left-0 w-1.5 h-full rounded-l-2xl bg-[#F2C811]"></div>
+        <div class="mb-4 flex items-center gap-3">
+          <span class="rounded-lg bg-[#F2C811]/20 px-3 py-1 text-xs font-bold text-slate-700 uppercase tracking-widest">Partenariat exclusif</span>
+        </div>
+        <h2 class="text-lg font-bold text-slate-800 mb-2">Représentation ERP — LogieMAX</h2>
+        <p class="text-sm font-semibold text-brand-700 mb-4">
+          Aurelia est représentant officiel et exclusif de la solution ERP LogieMAX en Afrique du Nord.
+        </p>
+        <ul class="space-y-2 mb-4">
+          {[
+            'Commercialisation de la solution ERP LogieMAX',
+            'Intégration et déploiement selon les besoins des entreprises',
+            'Accompagnement fonctionnel et technique',
+            'Support et formation des utilisateurs',
+          ].map(item => (
+            <li class="flex items-start gap-2 text-sm text-slate-600">
+              <svg class="mt-0.5 size-4 shrink-0 text-[#F2C811]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p class="text-xs text-slate-500">
+          LogieMAX est une solution ERP &amp; CRM complète, conçue pour optimiser la gestion,
+          renforcer la visibilité des processus et soutenir la performance opérationnelle,
+          avec accès web et mobile.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Sectors badge row -->
-  <section class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8">
-    <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-slate-500">Sectors we serve</p>
-    <div class="flex flex-wrap gap-3">
-      {['Automotive','Pharmaceuticals','Energy','Agri-food','Logistics'].map(s => (
-        <span class="rounded-full border border-teal-400 bg-teal-50 px-4 py-1.5 text-sm font-medium text-teal-800">{s}</span>
-      ))}
+  <!-- Technologies & Partenariats -->
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
+    <div class="rounded-3xl bg-slate-50 border border-slate-200 p-8 md:p-12">
+      <h2 class="text-2xl font-bold text-slate-800 mb-2">Partenariats &amp; technologies</h2>
+      <p class="text-slate-600 mb-8 max-w-2xl">
+        Aurelia s'appuie sur des partenariats stratégiques et des technologies éprouvées pour garantir
+        des solutions fiables, évolutives et alignées avec les standards industriels et IT.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {technologies.groups.map(g => (
+          <div>
+            <h3 class="font-bold text-brand-700 mb-3 text-sm uppercase tracking-wide">{g.title}</h3>
+            <ul class="space-y-2">
+              {g.items.map(item => (
+                <li class="flex items-start gap-2 text-sm text-slate-600">
+                  <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-500"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8">
     <div class="relative overflow-hidden rounded-3xl bg-brand-700 px-8 py-14 text-center sm:px-16">
-      <svg viewBox="0 0 1024 1024" class="absolute top-1/2 left-1/2 -z-10 size-[64rem] -translate-x-1/2 -translate-y-1/2 opacity-20" aria-hidden="true">
-        <circle cx="512" cy="512" r="512" fill="url(#cta2)"/>
-        <defs><radialGradient id="cta2"><stop offset="0" stop-color="#1B3A7A"/><stop offset="1" stop-color="#2E8B57"/></radialGradient></defs>
-      </svg>
-      <h2 class="relative text-2xl font-semibold text-white sm:text-3xl md:text-4xl">Have a project in mind?</h2>
+      <h2 class="relative text-2xl font-semibold text-white sm:text-3xl">Vous avez un projet ?</h2>
       <p class="relative mt-4 text-brand-100 max-w-xl mx-auto">
-        Our team is ready to analyse your needs and deliver the right solution — book your free digital maturity assessment today.
+        Notre équipe est disponible pour analyser vos besoins et vous proposer la solution la mieux adaptée.
       </p>
       <div class="relative mt-8">
-        <Button href="/contact" variant="tertiary" className="inline-flex border-none px-6! text-brand-800 font-semibold">
-          Book Free Assessment
+        <Button href="/contact" variant="tertiary" className="inline-flex border-none px-6! font-semibold text-brand-800">
+          Demander une évaluation gratuite
         </Button>
       </div>
     </div>
   </section>
+
 </BaseLayout>
