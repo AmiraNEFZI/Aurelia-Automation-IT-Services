@@ -4,6 +4,11 @@
  * Technique : le conteneur garde une taille fixe dans le layout,
  * l'image est agrandie par scale() + overflow visible pour
  * apparaître plus grande visuellement sans modifier la navbar.
+ * 
+ * Navbar : conteneur de 48px de hauteur dans le flux,
+ * image agrandie à 2.8× par transform:scale pour être bien visible.
+ * overflow:visible permet à l'image d'être plus grande que son conteneur
+ * sans affecter la taille de la navbar.
  */
 export interface Props {
   size?: 'navbar' | 'footer' | 'page' | string;
@@ -13,12 +18,6 @@ const { size = 'footer', class: extra = '' } = Astro.props;
 ---
 
 {size === 'navbar' ? (
-  <!--
-    Navbar : conteneur de 48px de hauteur dans le flux,
-    image agrandie à 2.8× par transform:scale pour être bien visible.
-    overflow:visible permet à l'image d'être plus grande que son conteneur
-    sans affecter la taille de la navbar.
-  -->
   <div
     class={`relative flex items-center flex-none shrink-0 ${extra}`}
     style="height:48px; width:150px;"
