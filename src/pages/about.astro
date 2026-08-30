@@ -18,7 +18,7 @@ const founders = [
   {
     name: 'Kachouti Hassen',
     role: 'Founder & Chief Executive Officer',
-    photo: '/illustrations/hassen-kachouti.jpg',
+    photo: '/illustrations/Hassen%20kachouti.jpg',
     expertise: [
       'Expert en Technologies de l\'Information, management des Systèmes d\'Information',
       'Manager de Projets, Spécialiste en sciences des données, analyse de données et Intelligence Artificielle',
@@ -33,7 +33,7 @@ const founders = [
   {
     name: 'Kachouti Adem',
     role: 'Co-Founder',
-    photo: '/illustrations/adem-kachouti.jpg',
+    photo: '/illustrations/Adem%20Kachouti.jpg',
     expertise: [
       'Spécialiste en maintenance de machines industrielles et solutions d\'automatisation',
       'Réalisation de projets industriels innovants et modernisation de machines',
@@ -84,14 +84,13 @@ const sectors = [
         <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-lg transition-shadow duration-300">
           <!-- Photo + nom -->
           <div class="flex items-center gap-5 mb-6">
-            <div class="size-24 shrink-0 rounded-full overflow-hidden border-4 border-brand-100 bg-slate-100">
+            <div class="size-24 shrink-0 rounded-full overflow-hidden border-4 border-brand-200 bg-slate-100 shadow-md">
               <img
                 src={f.photo}
-                alt={f.name}
+                alt={`Photo de ${f.name}`}
                 class="w-full h-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
-                onerror="this.style.display='none'; this.parentElement.innerHTML='<svg class=\'w-full h-full text-brand-300\' fill=\'currentColor\' viewBox=\'0 0 24 24\'><path d=\'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z\'/></svg>'"
               />
             </div>
             <div>

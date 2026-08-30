@@ -1,6 +1,6 @@
 ---
 const title   = `Nos domaines <span class="text-teal-600">d'expertise</span>`;
-const subTitle = `Trois piliers de services intégrés pour transformer vos opérations industrielles en un écosystème connecté, agile et performant.`;
+const subTitle = `Cinq piliers complémentaires pour accompagner toute la chaîne de transformation industrielle et digitale de votre entreprise.`;
 ---
 
 <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20">
@@ -12,118 +12,115 @@ const subTitle = `Trois piliers de services intégrés pour transformer vos opé
     <p class="mt-3 text-pretty text-slate-500">{subTitle}</p>
   </div>
 
-  <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
 
-    <!-- Card 1 — Automatisation industrielle (pleine largeur) -->
+    <!-- Automatisation industrielle — pleine largeur -->
     <div class="lg:col-span-3 group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
       <div class="grid md:grid-cols-2 items-stretch">
         <div class="flex flex-col justify-center p-8 md:p-10">
           <span class="inline-block rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700 tracking-widest uppercase mb-4">
-            Robotique · API/PLC · SCADA
+            01 — Robotique · API/PLC · SCADA
           </span>
           <h3 class="text-2xl font-bold text-slate-800 mb-3">Automatisation industrielle</h3>
           <p class="text-slate-600 text-base leading-relaxed">
-            Conception, installation et optimisation de systèmes automatisés. Programmation de PLC,
-            supervision HMI/SCADA et contrôle avancé des processus pour une production efficace
-            et un minimum de temps d'arrêt.
+            Conception, installation et optimisation de systèmes automatisés. Programmation de PLC
+            et robots industriels, supervision HMI/SCADA et contrôle avancé des processus pour
+            une production efficace et des temps d'arrêt réduits.
           </p>
           <a href="/services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:gap-3 transition-all">
-            Voir nos services
+            Voir tous nos services
             <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
           </a>
         </div>
-        <div class="min-h-[280px] overflow-hidden bg-slate-50">
-          <img src="/illustrations/industrial-automation.svg" alt="Automatisation industrielle — bras robotiques et contrôleur PLC" class="h-full w-full object-cover" loading="lazy"/>
+        <div class="min-h-[260px] overflow-hidden bg-slate-50">
+          <img src="/illustrations/industrial-automation.svg" alt="Automatisation industrielle" class="h-full w-full object-cover" loading="lazy"/>
         </div>
       </div>
       <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-700 rounded-l-2xl"></div>
     </div>
 
-    <!-- Card 2 — IoT & IA (2/3) -->
-    <div class="lg:col-span-2 group relative overflow-hidden rounded-2xl bg-slate-900 shadow-sm hover:shadow-2xl transition-all duration-300">
-      <div class="relative h-56 overflow-hidden">
-        <img src="/illustrations/iot-ai-integration.svg" alt="Intégration IoT et IA — usine intelligente" class="h-full w-full object-cover" loading="lazy"/>
-        <div class="absolute inset-0 bg-linear-to-b from-transparent to-slate-900/60"></div>
-      </div>
+    <!-- Digitalisation & IT -->
+    <div class="group relative overflow-hidden rounded-2xl border border-teal-200 bg-white shadow-sm hover:shadow-lg hover:border-teal-400 transition-all duration-300">
       <div class="p-8">
-        <span class="inline-block rounded-full bg-teal-900/60 px-3 py-1 text-xs font-bold text-teal-400 tracking-widest uppercase mb-3">
-          Usine intelligente · Analytique prédictive
-        </span>
-        <h3 class="text-xl font-bold text-white mb-2">Intégration IoT &amp; Intelligence Artificielle</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">
-          Déploiement de réseaux <strong class="text-teal-400">IoT</strong> et de solutions d'<strong class="text-teal-400">intelligence artificielle</strong>
-          pour moderniser les processus industriels, améliorer la collecte des données
-          et faciliter la prise de décision éclairée.
+        <span class="text-4xl font-black text-teal-100">02</span>
+        <h3 class="mt-2 text-lg font-bold text-teal-700 mb-3">Digitalisation &amp; IT industrielle</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Déploiement de solutions IoT, MES et ERP. Intégration de systèmes cloud et edge computing,
+          supervision et contrôle à distance des opérations.
         </p>
-        <a href="/services" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-400 hover:gap-3 transition-all">
-          En savoir plus
-          <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
-        </a>
       </div>
       <div class="absolute top-0 left-0 w-1.5 h-full bg-teal-500 rounded-l-2xl"></div>
     </div>
 
-    <!-- Card 3 — Power BI (1/3) -->
-    <div class="lg:col-span-1 group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
-      <div class="relative h-56 overflow-hidden bg-slate-800 p-5 flex flex-col gap-2">
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-xs font-bold text-white/80 uppercase tracking-widest">Tableau de bord</span>
-          <span class="rounded bg-[#F2C811] px-2 py-0.5 text-[10px] font-black text-slate-900">Power BI</span>
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <div class="rounded-lg bg-brand-700/80 p-2.5">
-            <p class="text-[10px] text-blue-200">TRS Global</p>
-            <p class="text-xl font-black text-white">94.7%</p>
-            <p class="text-[9px] text-green-400">▲ +3.2%</p>
-          </div>
-          <div class="rounded-lg bg-teal-800/80 p-2.5">
-            <p class="text-[10px] text-teal-200">Production/jour</p>
-            <p class="text-xl font-black text-white">12 847</p>
-            <p class="text-[9px] text-green-400">▲ +8.4%</p>
-          </div>
-        </div>
-        <div class="mt-1 flex items-end gap-1.5 h-14">
-          {[40,65,50,80,70,95,85,100].map((pct, i) => (
-            <div class={`flex-1 rounded-sm ${i % 2 === 0 ? 'bg-brand-500' : 'bg-teal-500'}`} style={`height:${pct}%`}></div>
-          ))}
-        </div>
-        <p class="text-[9px] text-slate-400 text-center">Production par ligne — 8 derniers quarts</p>
-      </div>
-      <div class="p-7">
-        <span class="inline-block rounded-full bg-teal-50 px-3 py-1 text-xs font-bold text-teal-700 tracking-widest uppercase mb-3">
-          Tableaux de bord · KPI · Rapports
-        </span>
-        <h3 class="text-xl font-bold text-slate-800 mb-2">Conseil Power BI</h3>
+    <!-- Cybersécurité -->
+    <div class="group relative overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-sm hover:shadow-lg hover:border-brand-400 transition-all duration-300">
+      <div class="p-8">
+        <span class="text-4xl font-black text-brand-100">03</span>
+        <h3 class="mt-2 text-lg font-bold text-brand-700 mb-3">Cybersécurité &amp; IT</h3>
         <p class="text-slate-600 text-sm leading-relaxed">
-          Conception de tableaux de bord interactifs et personnalisés, transformant vos données brutes
-          en informations stratégiques pour un meilleur pilotage de la performance.
+          Protection des infrastructures IT et OT, sécurisation des données, audit et conformité
+          aux standards de sécurité industriels et IT.
         </p>
-        <a href="/services" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:gap-3 transition-all">
-          En savoir plus
-          <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
-        </a>
       </div>
-      <div class="absolute top-0 left-0 w-1.5 h-full bg-[#F2C811] rounded-l-2xl"></div>
+      <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-700 rounded-l-2xl"></div>
     </div>
 
-    <!-- Card 4 — Et plus -->
-    <div class="lg:col-span-3 rounded-2xl border border-dashed border-brand-200 bg-brand-50 p-8 md:p-10">
-      <h3 class="text-xl font-bold text-brand-800 mb-6">Et bien plus encore…</h3>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {[
-          'Industrie manufacturière, agroalimentaire, énergie, textile & habillement',
-          'Solutions éthiques améliorant la productivité tout en protégeant les équipes',
-          'Gestion de projet de bout en bout : de l\'audit à la mise en production',
-          'Approche indépendante — pas de verrouillage fournisseur, pas de solutions génériques',
-        ].map(item => (
-          <li class="flex items-start gap-3 text-slate-700">
-            <svg class="mt-0.5 size-5 shrink-0 text-teal-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
-            </svg>
-            <span class="text-sm">{item}</span>
-          </li>
-        ))}
-      </ul>
+    <!-- Données & IA -->
+    <div class="group relative overflow-hidden rounded-2xl bg-slate-900 shadow-sm hover:shadow-2xl transition-all duration-300">
+      <div class="relative h-40 overflow-hidden">
+        <img src="/illustrations/iot-ai-integration.svg" alt="IoT et Intelligence Artificielle" class="h-full w-full object-cover opacity-80" loading="lazy"/>
+        <div class="absolute inset-0 bg-linear-to-b from-transparent to-slate-900/70"></div>
+      </div>
+      <div class="p-7">
+        <span class="text-4xl font-black text-teal-900">04</span>
+        <h3 class="mt-1 text-lg font-bold text-teal-400 mb-2">Exploitation des données &amp; IA</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Collecte temps réel, analyse avancée, tableaux de bord KPI personnalisés
+          et maintenance prédictive pour optimiser vos performances.
+        </p>
+      </div>
+      <div class="absolute top-0 left-0 w-1.5 h-full bg-teal-500 rounded-l-2xl"></div>
+    </div>
+
+    <!-- Conseil stratégique -->
+    <div class="group relative overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-sm hover:shadow-lg hover:border-brand-400 transition-all duration-300 lg:col-span-2">
+      <div class="grid sm:grid-cols-2 gap-0 h-full">
+        <div class="p-8 flex flex-col justify-center">
+          <span class="text-4xl font-black text-brand-100">05</span>
+          <h3 class="mt-2 text-lg font-bold text-brand-700 mb-3">Conseil &amp; accompagnement stratégique</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Audit industriel, évaluation de maturité digitale, identification des axes d'optimisation
+            et accompagnement vers l'Industrie 4.0.
+          </p>
+          <a href="/services" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:gap-3 transition-all">
+            Détails des services
+            <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
+          </a>
+        </div>
+        <!-- Power BI mini dashboard -->
+        <div class="flex flex-col justify-center bg-slate-800 rounded-r-2xl p-6 gap-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-white/70 uppercase tracking-widest">Tableau de bord</span>
+            <span class="rounded bg-[#F2C811] px-2 py-0.5 text-[9px] font-black text-slate-900">Power BI</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="rounded-lg bg-brand-700/80 p-2">
+              <p class="text-[9px] text-blue-200">TRS Global</p>
+              <p class="text-lg font-black text-white">94.7%</p>
+            </div>
+            <div class="rounded-lg bg-teal-800/80 p-2">
+              <p class="text-[9px] text-teal-200">Production</p>
+              <p class="text-lg font-black text-white">+32%</p>
+            </div>
+          </div>
+          <div class="flex items-end gap-1 h-10">
+            {[40,65,50,80,70,95,85,100].map((pct, i) => (
+              <div class={`flex-1 rounded-sm ${i % 2 === 0 ? 'bg-brand-500' : 'bg-teal-500'}`} style={`height:${pct}%`}></div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-700 rounded-l-2xl"></div>
     </div>
 
   </div>
