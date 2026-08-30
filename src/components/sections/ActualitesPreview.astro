@@ -1,0 +1,109 @@
+---
+/**
+ * ActualitesPreview
+ * Aperçu des dernières actualités et initiatives sur la page d'accueil
+ */
+
+const actualitesHighlights = [
+  {
+    id: 'bmd-4-0',
+    category: 'Expertise',
+    title: 'Business Model Development 4.0',
+    description: 'Hassen Kachouti pilote la transformation industrielle structurée à travers le BMD 4.0, intégrant IA, IoT et cybersécurité.',
+    image: '/illustrations/image premier post.jpg',
+    link: '/actualites#bmd-4-0-expertise-hassen-kachouti',
+  },
+  {
+    id: 'conference-douanes',
+    category: 'Conférence',
+    title: 'École Nationale des Douanes',
+    description: 'Intervention auprès de la 17ᵉ promotion sur l\'innovation et la création de valeur à l\'ère digitale.',
+    image: '/illustrations/image deuxieme post.jpg',
+    link: '/actualites#conference-ecole-nationale-douanes',
+  },
+  {
+    id: 'partenariat-esprit',
+    category: 'Partenariat',
+    title: 'Partenariat Stratégique ESPRIT',
+    description: 'Collaboration avec l\'École Supérieure d\'Ingénierie pour développer les compétences en Industrie 4.0.',
+    image: '/illustrations/image 4eme post.jpg',
+    link: '/actualites#partenariat-esprit',
+  },
+];
+---
+
+<section class="mx-auto max-w-[85rem] px-4 py-20 sm:px-6 lg:px-8">
+  <!-- Header -->
+  <div class="mb-12 text-center">
+    <h2 class="text-3xl font-bold text-slate-800 sm:text-4xl">
+      Nos dernières <span class="text-brand-700">actualités</span>
+    </h2>
+    <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+      Découvrez nos initiatives, conférences et partenariats stratégiques
+    </p>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {actualitesHighlights.map((actualite, index) => (
+      <a
+        href={actualite.link}
+        class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300"
+      >
+        <!-- Image -->
+        <div class="relative h-48 overflow-hidden">
+          <img
+            src={actualite.image}
+            alt={actualite.title}
+            class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+          
+          <!-- Category Badge -->
+          <div class="absolute top-4 left-4">
+            <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider shadow-lg ${
+              actualite.category === 'Expertise' ? 'bg-brand-700 text-white' :
+              actualite.category === 'Conférence' ? 'bg-teal-600 text-white' :
+              'bg-purple-600 text-white'
+            }`}>
+              {actualite.category}
+            </span>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-brand-700 transition-colors">
+            {actualite.title}
+          </h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            {actualite.description}
+          </p>
+          
+          <!-- Read more link -->
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:gap-3 transition-all">
+            <span>En savoir plus</span>
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <!-- View All Button -->
+  <div class="mt-12 text-center">
+    <a
+      href="/actualites"
+      class="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-8 py-4 text-base font-semibold text-white shadow-lg hover:bg-brand-600 transition-all duration-300 hover:scale-105"
+    >
+      Voir toutes les actualités
+      <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+      </svg>
+    </a>
+  </div>
+</section>
