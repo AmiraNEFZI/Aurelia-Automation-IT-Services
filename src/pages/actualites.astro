@@ -1,0 +1,326 @@
+---
+export const prerender = true;
+import BaseLayout from '@layout/BaseLayout.astro';
+import type { WithContext, Thing } from 'schema-dts';
+
+const seo = {
+  title: 'Actualités & Initiatives — Aurelia Automation & IT Services',
+  description: 'Découvrez nos dernières initiatives, conférences et partenariats stratégiques dans le domaine de la transformation digitale et de l\'Industrie 4.0.',
+};
+
+const schema: WithContext<Thing> = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  inLanguage: 'fr',
+  '@id': Astro.url.href,
+  url: Astro.url.href,
+  name: seo.title,
+  isPartOf: { '@type': 'WebSite', url: `${Astro.site}`, name: 'Aurelia Automation & IT Services' },
+};
+
+const actualites = [
+  {
+    id: 'bmd-4-0-expertise-hassen-kachouti',
+    date: '2024',
+    category: 'Expertise',
+    title: 'Business Model Development 4.0 — Transformation Industrielle Structurée',
+    image: '/illustrations/image premier post.jpg',
+    imageAlt: 'Hassen Kachouti - CEO & Digital Transformation Manager',
+    content: {
+      intro: 'Chez **Aurelia Automation & IT Services**, la transformation industrielle est abordée selon une vision structurée et stratégique à travers le BMD 4.0 (Business Model Development for Industry 4.0).',
+      description: 'Dans ce cadre, **Hassen Kachouti** pilote la conception et le déploiement de modèles de transformation digitale permettant aux organisations industrielles de passer d\'une digitalisation opérationnelle à une transformation globale, intégrée et orientée performance.',
+      pillars: [
+        'La structuration des modèles de transformation digitale',
+        'La valorisation stratégique de la donnée',
+        'L\'intégration de l\'intelligence artificielle dans les processus industriels',
+        'La conception d\'architectures industrielles connectées et intelligentes',
+        'Le renforcement de la cybersécurité comme socle de confiance',
+      ],
+      expertise: 'Fort d\'une expérience de plus de 30 ans au sein du **Ministère de la Défense Nationale de Tunisie**, où il a occupé des fonctions de haut niveau dans la gestion des systèmes d\'information et la cybersécurité, **Hassen Kachouti** apporte une expertise unique dans les environnements critiques et complexes.',
+      formation: 'Il a également contribué au développement des compétences en data science et systèmes d\'information à travers des activités de formation et de transmission de savoir-faire technique et stratégique.',
+      vision: 'Au sein d\'Aurelia, sa vision est clairement orientée vers une transformation industrielle durable : une transformation qui ne se limite pas à la technologie, mais qui restructure le modèle de performance des organisations autour du BMD 4.0.',
+      conclusion: '**Aurelia Automation & IT Services** accompagne ainsi les entreprises dans la conception de systèmes industriels intelligents, sécurisés et évolutifs, adaptés aux exigences de l\'industrie moderne.',
+    },
+    hashtags: ['Leadership', 'BMD40', 'TransformationDigitale', 'Industry40', 'Cybersecurity'],
+  },
+  {
+    id: 'conference-ecole-nationale-douanes',
+    date: '2024',
+    category: 'Conférence',
+    title: 'Innover, Transformer et Créer de la Valeur à l\'ère de la Transformation Digitale',
+    image: '/illustrations/image deuxieme post.jpg',
+    imageAlt: 'Conférence École Nationale des Douanes - Hassen Kachouti',
+    content: {
+      intro: 'Nous avons le plaisir de partager la publication de l\'**École Nationale des Douanes**, mettant en lumière l\'intervention de **Hassen Kachouti**, CEO & Founder d\'**Aurelia Automation & IT Services**, auprès des élèves-officiers de la 17ᵉ promotion.',
+      description: 'Cette conférence, intitulée **« Innover, Transformer et Créer de la Valeur à l\'ère de la Transformation Digitale »**, s\'inscrit dans le cadre du programme de l\'École visant à développer le leadership, l\'innovation et les compétences digitales des futurs cadres.',
+      themes: [
+        'Innovation et création de valeur dans l\'économie digitale',
+        'Leadership à l\'ère de la transformation digitale',
+        'Développement des compétences digitales pour les futurs cadres',
+        'Méthodologies de transformation organisationnelle',
+      ],
+      link: 'https://lnkd.in/drCh9VZR',
+      linkText: 'Découvrez la publication complète',
+    },
+    hashtags: ['Leadership', 'Innovation', 'TransformationDigitale', 'FutureLeaders'],
+  },
+  {
+    id: 'conference-agrotech-bizerte',
+    date: '2024',
+    category: 'Conférence',
+    title: 'Business Model Digital 4.0 — Agrotech 4.0 Center, Pôle de Compétitivité de Bizerte',
+    image: '/illustrations/image 3eme post.jpg',
+    imageAlt: 'Conférence Agrotech 4.0 Center - Business Model Digital 4.0',
+    content: {
+      intro: 'Réalisation d\'une conférence intitulée : **« Innover, Transformer et Créer de la Valeur à l\'ère de la Transformation Digitale »**',
+      description: 'Animée par **Hassen Kachouti**, Fondateur de **Aurelia Automation & IT Services**, cette intervention s\'est tenue au sein de l\'**Agrotech 4.0 Center** – **Pôle de Compétitivité de Bizerte** – **Incubation Center**.',
+      themes: [
+        'Les fondements du Business Model 4.0',
+        'L\'intégration des technologies digitales dans les modèles économiques',
+        'L\'impact de l\'Industrie 4.0 sur la performance et la compétitivité',
+        'Les leviers d\'innovation et de création de valeur à travers la transformation digitale',
+      ],
+      impact: 'À travers une approche stratégique et orientée résultats, cette conférence a permis d\'ouvrir le débat sur les enjeux concrets de la digitalisation et les nouvelles dynamiques de création de valeur pour les entreprises industrielles et technologiques.',
+      remerciements: 'Remerciements à l\'**Agrotech 4.0 Center** – **Pôle de Compétitivité de Bizerte** – **Incubation Center** pour l\'accueil et l\'organisation.',
+    },
+    hashtags: ['AureliaAutomation', 'Industry40', 'TransformationDigitale', 'BusinessModel', 'Innovation', 'Agrotech', 'Bizerte'],
+  },
+  {
+    id: 'partenariat-esprit',
+    date: '2024',
+    category: 'Partenariat',
+    title: 'Partenariat Stratégique avec ESPRIT — École Supérieure Privée d\'Ingénierie et de Technologies',
+    image: '/illustrations/image 4eme post.jpg',
+    imageAlt: 'Partenariat Aurelia - ESPRIT',
+    content: {
+      intro: 'Nous sommes fiers d\'annoncer notre partenariat avec **ESPRIT (École Supérieure Privée d\'Ingénierie et de Technologies)**, l\'une des principales institutions d\'enseignement supérieur en ingénierie et technologies en Tunisie.',
+      description: 'Cette collaboration s\'inscrit dans notre volonté de contribuer activement au développement des compétences et à l\'accompagnement des futurs ingénieurs face aux enjeux de l\'Industrie 4.0 et de la transformation digitale.',
+      domaines: [
+        'Automatisation industrielle',
+        'Digitalisation des processus',
+        'IoT industriel',
+        'Business Intelligence & Data Analytics',
+        'Cybersécurité industrielle et informatique',
+        'Technologies émergentes',
+      ],
+      conviction: 'Nous sommes convaincus que le rapprochement entre le monde académique et le monde industriel constitue un levier essentiel pour favoriser l\'innovation, développer les talents et répondre aux besoins des entreprises de demain.',
+      remerciements: 'Nous remercions chaleureusement les équipes d\'**ESPRIT** pour leur confiance et nous nous réjouissons des nombreuses opportunités de collaboration, de stages, de projets et d\'échanges qui découleront de ce partenariat.',
+      vision: '**Ensemble, construisons les compétences et les solutions technologiques de demain.**',
+    },
+    hashtags: ['AureliaAutomation', 'ESPRIT', 'Partenariat', 'Industrie40', 'TransformationDigitale', 'IoT', 'BusinessIntelligence', 'Cybersecurity', 'Innovation', 'Engineering'],
+  },
+];
+---
+
+<BaseLayout seo={seo} schema={schema}>
+
+  <!-- Hero Section -->
+  <section class="mx-auto max-w-[85rem] px-4 pt-44 pb-16 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl font-bold text-slate-800 sm:text-5xl md:text-6xl">
+        Actualités &amp; <span class="text-brand-700">Initiatives</span>
+      </h1>
+      <p class="mt-6 text-lg text-slate-600 leading-relaxed">
+        Découvrez nos dernières initiatives, conférences et partenariats stratégiques dans le domaine
+        de la transformation digitale et de l'Industrie 4.0.
+      </p>
+    </div>
+  </section>
+
+  <!-- Actualités Grid -->
+  <section class="mx-auto max-w-[85rem] px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="space-y-16">
+      {actualites.map((actualite, index) => (
+        <article 
+          id={actualite.id}
+          class={`rounded-3xl border shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl ${
+            index % 2 === 0 
+              ? 'border-brand-200 bg-gradient-to-br from-white to-brand-50/30' 
+              : 'border-teal-200 bg-gradient-to-br from-white to-teal-50/30'
+          }`}
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            
+            <!-- Image -->
+            <div class={`relative h-64 lg:h-auto overflow-hidden ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+              <img
+                src={actualite.image}
+                alt={actualite.imageAlt}
+                class="absolute inset-0 w-full h-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent lg:bg-gradient-to-r"></div>
+              
+              <!-- Category Badge -->
+              <div class="absolute top-6 left-6">
+                <span class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-lg ${
+                  actualite.category === 'Expertise' ? 'bg-brand-700 text-white' :
+                  actualite.category === 'Conférence' ? 'bg-teal-600 text-white' :
+                  'bg-purple-600 text-white'
+                }`}>
+                  {actualite.category}
+                </span>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class={`p-8 lg:p-12 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+              
+              <!-- Date -->
+              <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
+                <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <time>{actualite.date}</time>
+              </div>
+
+              <!-- Title -->
+              <h2 class="text-2xl font-bold text-slate-800 mb-5 leading-tight">
+                {actualite.title}
+              </h2>
+
+              <!-- Content -->
+              <div class="prose prose-slate max-w-none space-y-4">
+                
+                {actualite.content.intro && (
+                  <p class="text-slate-600 leading-relaxed" set:html={actualite.content.intro.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-700 font-semibold">$1</strong>')} />
+                )}
+
+                {actualite.content.description && (
+                  <p class="text-slate-600 leading-relaxed" set:html={actualite.content.description.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-700 font-semibold">$1</strong>')} />
+                )}
+
+                {/* Pillars for BMD 4.0 */}
+                {actualite.content.pillars && (
+                  <div class="my-6">
+                    <p class="text-sm font-semibold text-brand-700 mb-3 uppercase tracking-wide">Le BMD 4.0 repose sur :</p>
+                    <ul class="space-y-2">
+                      {actualite.content.pillars.map(pillar => (
+                        <li class="flex items-start gap-2 text-sm text-slate-600">
+                          <svg class="mt-0.5 size-5 shrink-0 text-brand-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                          </svg>
+                          {pillar}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Themes for conferences */}
+                {actualite.content.themes && (
+                  <div class="my-6">
+                    <p class="text-sm font-semibold text-teal-700 mb-3 uppercase tracking-wide">Thèmes abordés :</p>
+                    <ul class="space-y-2">
+                      {actualite.content.themes.map(theme => (
+                        <li class="flex items-start gap-2 text-sm text-slate-600">
+                          <svg class="mt-0.5 size-5 shrink-0 text-teal-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                          </svg>
+                          {theme}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Domaines for partnerships */}
+                {actualite.content.domaines && (
+                  <div class="my-6">
+                    <p class="text-sm font-semibold text-purple-700 mb-3 uppercase tracking-wide">Domaines d'expertise :</p>
+                    <ul class="space-y-2">
+                      {actualite.content.domaines.map(domaine => (
+                        <li class="flex items-start gap-2 text-sm text-slate-600">
+                          <svg class="mt-0.5 size-5 shrink-0 text-purple-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                          </svg>
+                          {domaine}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {actualite.content.expertise && (
+                  <p class="text-slate-600 leading-relaxed" set:html={actualite.content.expertise.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-700 font-semibold">$1</strong>')} />
+                )}
+
+                {actualite.content.formation && (
+                  <p class="text-slate-600 leading-relaxed" set:html={actualite.content.formation} />
+                )}
+
+                {actualite.content.vision && (
+                  <p class="text-slate-600 leading-relaxed" set:html={actualite.content.vision.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-700 font-semibold">$1</strong>')} />
+                )}
+
+                {actualite.content.impact && (
+                  <p class="text-slate-600 leading-relaxed" set:html={actualite.content.impact} />
+                )}
+
+                {actualite.content.conviction && (
+                  <p class="text-slate-600 leading-relaxed" set:html={actualite.content.conviction} />
+                )}
+
+                {actualite.content.conclusion && (
+                  <p class="text-slate-600 leading-relaxed font-medium" set:html={actualite.content.conclusion.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-700 font-semibold">$1</strong>')} />
+                )}
+
+                {actualite.content.remerciements && (
+                  <p class="text-slate-600 leading-relaxed italic" set:html={actualite.content.remerciements.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')} />
+                )}
+
+                {/* Link for conference posts */}
+                {actualite.content.link && (
+                  <div class="mt-6">
+                    <a 
+                      href={actualite.content.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-brand-700 hover:text-brand-600 font-semibold transition-colors"
+                    >
+                      <span>👉 {actualite.content.linkText}</span>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                      </svg>
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              <!-- Hashtags -->
+              <div class="mt-8 flex flex-wrap gap-2">
+                {actualite.hashtags.map(tag => (
+                  <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-200 transition-colors">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="mx-auto max-w-[85rem] px-4 pb-20 sm:px-6 lg:px-8">
+    <div class="rounded-3xl bg-gradient-to-br from-brand-700 to-brand-600 px-10 py-16 text-center text-white shadow-2xl">
+      <h2 class="text-3xl font-bold mb-4">Intéressé par nos initiatives ?</h2>
+      <p class="text-brand-100 mb-8 max-w-2xl mx-auto text-lg">
+        Contactez-nous pour en savoir plus sur nos services, nos partenariats ou nos opportunités de collaboration.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-semibold text-brand-700 shadow-lg hover:bg-brand-50 transition-all duration-300 hover:scale-105"
+      >
+        Nous contacter
+        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
