@@ -90,7 +90,7 @@ const actualites = [
     date: '2024',
     category: 'Partenariat',
     title: 'Partenariat Stratégique avec ESPRIT — École Supérieure Privée d\'Ingénierie et de Technologies',
-    image: '/illustrations/image 4eme post.jpg',
+    image: '/illustrations/image 4eme post aussi.jpg',
     imageAlt: 'Partenariat Aurelia - ESPRIT',
     content: {
       intro: 'Nous sommes fiers d\'annoncer notre partenariat avec **ESPRIT (École Supérieure Privée d\'Ingénierie et de Technologies)**, l\'une des principales institutions d\'enseignement supérieur en ingénierie et technologies en Tunisie.',
@@ -142,18 +142,17 @@ const actualites = [
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
             
             <!-- Image -->
-            <div class={`relative h-64 lg:h-auto overflow-hidden ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+            <div class={`relative h-64 lg:h-auto overflow-hidden bg-slate-100 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
               <img
                 src={actualite.image}
                 alt={actualite.imageAlt}
-                class="absolute inset-0 w-full h-full object-cover object-center"
+                class="absolute inset-0 w-full h-full object-contain object-center p-4"
                 loading="lazy"
                 decoding="async"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent lg:bg-gradient-to-r"></div>
               
               <!-- Category Badge -->
-              <div class="absolute top-6 left-6">
+              <div class="absolute top-6 left-6 z-10">
                 <span class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-lg ${
                   actualite.category === 'Expertise' ? 'bg-brand-700 text-white' :
                   actualite.category === 'Conférence' ? 'bg-teal-600 text-white' :

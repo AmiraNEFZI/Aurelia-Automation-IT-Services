@@ -51,18 +51,17 @@ const actualitesHighlights = [
         class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300"
       >
         <!-- Image -->
-        <div class="relative h-48 overflow-hidden">
+        <div class="relative h-48 overflow-hidden bg-slate-100">
           <img
             src={actualite.image}
             alt={actualite.title}
-            class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
+            class="w-full h-full object-contain object-center p-4 transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
             decoding="async"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
           
           <!-- Category Badge -->
-          <div class="absolute top-4 left-4">
+          <div class="absolute top-4 left-4 z-10">
             <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider shadow-lg ${
               actualite.category === 'Expertise' ? 'bg-brand-700 text-white' :
               actualite.category === 'Conférence' ? 'bg-teal-600 text-white' :
